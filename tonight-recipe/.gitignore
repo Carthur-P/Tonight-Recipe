@@ -3,6 +3,9 @@
 /.pnp
 .pnp.js
 
+#Key
+.env
+
 #Testing
 /coverage
 

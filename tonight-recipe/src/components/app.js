@@ -6,10 +6,12 @@ export default class App extends React.Component {
     this.state = {
       data: 0
     }
+    this.app_id = process.env.REACT_APP_ID;
+    this.app_key = process.env.REACT_APP_KEY;
   }
 
   componentWillMount(){
-    fetch('https://api.edamam.com/search?q=chicken&app_id=${process.env.REACT_APP_APP_ID}&app_key=${process.env.REACT_APP_APP_KEY}')
+    fetch(`https://api.edamam.com/search?q=chicken&app_id=${this.app_id}&app_key=${this.app_key}`)
     .then((res) => {
       res.json()
       console.log(res);

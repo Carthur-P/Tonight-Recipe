@@ -6,10 +6,12 @@ export default class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      data: []
+      data: [],
+      search: ""
     }
     this.app_id = process.env.REACT_APP_ID;
     this.app_key = process.env.REACT_APP_KEY;
+    this.searching = this.searching.bind(this);
   }
 
   componentDidMount(){
@@ -25,12 +27,19 @@ export default class App extends React.Component {
     });
   }
 
+  searching(e) {
+    this.setState({
+      search: e.target.value
+    });
+    console.log(this.state.search);
+  }
+
   render(){
     console.log(this.state.data);
     return (
       <div className="app">
         <form className="searchForm">
-          <input className="searchBar" type="text"></input>
+          <input className="searchBar" type="text" onChange={this.searching}></input>
           <button className="searchButton" type="submit">Search</button>
         </form>
         <div className="recipeContainer">

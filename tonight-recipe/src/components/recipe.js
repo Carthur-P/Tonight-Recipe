@@ -6,7 +6,7 @@ export default class Recipe extends React.Component{
         return(
             <div className="recipe"> 
                 <h1>{this.props.title}</h1>
-                <img src={this.props.image} alt="Recipe Image"/>
+                <img src={this.props.image} alt="Recipe"/>
             </div>
         );
     }

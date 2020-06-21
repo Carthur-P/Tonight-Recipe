@@ -11,11 +11,13 @@ export default class App extends React.Component {
     }
     this.app_id = process.env.REACT_APP_ID;
     this.app_key = process.env.REACT_APP_KEY;
-    this.searching = this.searching.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount(){
-    fetch(`https://api.edamam.com/search?q=chicken&app_id=${this.app_id}&app_key=${this.app_key}`)
+  fetchData(){
+    console.log("h1");
+    fetch(`https://api.edamam.com/search?q=${this.state.search}&app_id=${this.app_id}&app_key=${this.app_key}`)
     .then((res) => res.json())
     .then((data) => {
       this.setState({
@@ -27,19 +29,22 @@ export default class App extends React.Component {
     });
   }
 
-  searching(e) {
+  handleChange(e){
     this.setState({
       search: e.target.value
     });
-    console.log(this.state.search);
+  }
+
+  handleSubmit(e){
+    e.preventDefault();
+    this.fetchData();
   }
 
   render(){
-    console.log(this.state.data);
     return (
       <div className="app">
-        <form className="searchForm">
-          <input className="searchBar" type="text" onChange={this.searching}></input>
+        <form className="searchForm" onSubmit={this.handleSubmit}>
+          <input className="searchBar" type="text" onChange={this.handleChange} value={this.state.search}></input>
           <button className="searchButton" type="submit">Search</button>
         </form>
         <div className="recipeContainer">

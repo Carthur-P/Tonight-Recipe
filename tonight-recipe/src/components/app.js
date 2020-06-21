@@ -16,7 +16,6 @@ export default class App extends React.Component {
   }
 
   fetchData(){
-    console.log("h1");
     fetch(`https://api.edamam.com/search?q=${this.state.search}&app_id=${this.app_id}&app_key=${this.app_key}`)
     .then((res) => res.json())
     .then((data) => {
@@ -38,6 +37,9 @@ export default class App extends React.Component {
   handleSubmit(e){
     e.preventDefault();
     this.fetchData();
+    this.setState({
+      search: ""
+    });
   }
 
   render(){

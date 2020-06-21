@@ -1,12 +1,12 @@
 import React from 'react';
-import '../css/recipe.css';
+import styles from '../css/mystyles.module.css';
 
 export default class Recipe extends React.Component{
     render(){
         return(
-            <div className="recipe"> 
+            <div className={styles.recipeContainer}> 
                 <h1>{this.props.title}</h1>
-                <img src={this.props.image} alt="Recipe"/>
+                <img src={this.props.image} className={styles.roundImage} alt="Recipe"/>
             </div>
         );
     }

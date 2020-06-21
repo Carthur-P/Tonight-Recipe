@@ -1,6 +1,6 @@
 import React from 'react';
 import Recipe from './recipe';
-import '../css/app.css';
+import styles from '../css/mystyles.module.css';
 
 export default class App extends React.Component {
   constructor(props){
@@ -44,12 +44,12 @@ export default class App extends React.Component {
 
   render(){
     return (
-      <div className="app">
-        <form className="searchForm" onSubmit={this.handleSubmit}>
-          <input className="searchBar" type="text" onChange={this.handleChange} value={this.state.search}></input>
-          <button className="searchButton" type="submit">Search</button>
+      <div>
+        <form id="searchForm" className={styles.searchContainer} onSubmit={this.handleSubmit}>
+          <input id="searchBar" className={styles.searchBar} type="text" onChange={this.handleChange} value={this.state.search}/>
+          <button id="searchButton" className={styles.searchButton} type="submit">Search</button>
         </form>
-        <div className="recipeContainer">
+        <div className={styles.flexWrapCenter}>
           {this.state.data.map(((recipe) => (
             <Recipe
             key={recipe.recipe.label}

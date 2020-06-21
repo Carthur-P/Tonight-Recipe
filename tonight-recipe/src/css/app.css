@@ -1,0 +1,11 @@
+body{
+    margin-left: auto;
+    margin-right: auto;
+    width: 1200px;
+}
+
+.recipeContainer{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: aqua;
+}

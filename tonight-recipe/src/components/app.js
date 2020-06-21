@@ -1,5 +1,6 @@
 import React from 'react';
 import Recipe from './recipe';
+import '../css/app.css';
 
 export default class App extends React.Component {
   constructor(props){
@@ -32,14 +33,14 @@ export default class App extends React.Component {
           <input className="searchBar" type="text"></input>
           <button className="searchButton" type="submit">Search</button>
         </form>
-        {this.state.data.map(((recipe) => (
-          <div className="recipe">
+        <div className="recipeContainer">
+          {this.state.data.map(((recipe) => (
             <Recipe
             title={recipe.recipe.label}
             image={recipe.recipe.image}
             />
-          </div>
-        )))}
+          )))}
+        </div>
       </div>
     );
   }

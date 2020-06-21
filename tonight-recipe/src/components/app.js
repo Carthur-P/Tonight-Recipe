@@ -36,6 +36,7 @@ export default class App extends React.Component {
         <div className="recipeContainer">
           {this.state.data.map(((recipe) => (
             <Recipe
+            key={recipe.recipe.label}
             title={recipe.recipe.label}
             image={recipe.recipe.image}
             />

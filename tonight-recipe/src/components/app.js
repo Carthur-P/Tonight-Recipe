@@ -8,7 +8,8 @@ export default class App extends React.Component {
     this.state = {
       data: [],
       search: "",
-      haveSearch: false
+      haveSearch: false,
+      searching: false
     }
     this.app_id = process.env.REACT_APP_ID;
     this.app_key = process.env.REACT_APP_KEY;
@@ -17,11 +18,15 @@ export default class App extends React.Component {
   }
 
   fetchData(){
+    this.setState({
+      searching: true
+    });
     fetch(`https://api.edamam.com/search?q=${this.state.search}&app_id=${this.app_id}&app_key=${this.app_key}`)
     .then((res) => res.json())
     .then((data) => {
       this.setState({
-        data: data.hits
+        data: data.hits,
+        searching: false
       });
     })
     .catch((err) => {
@@ -58,15 +63,21 @@ export default class App extends React.Component {
           <input id="searchBar" className={styles.searchBar} type="text" onChange={this.handleChange} value={this.state.search}/>
           <button id="searchButton" className={styles.searchButton} type="submit">Search</button>
         </form>
-        <div className={styles.flexWrapCenter}>
-          {this.state.data.map(((recipe) => (
-            <Recipe
-            key={recipe.recipe.label}
-            title={recipe.recipe.label}
-            image={recipe.recipe.image}
-            />
-          )))}
-        </div>
+        {this.state.searching ? 
+          <div>
+            <h1>Test</h1>
+          </div>
+          :
+          <div className={styles.flexWrapCenter}>
+            {this.state.data.map(((recipe) => (
+              <Recipe
+                key={recipe.recipe.label}
+                title={recipe.recipe.label}
+                image={recipe.recipe.image}
+              />
+            )))}
+          </div>
+        }
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React from 'react';
 import Recipe from './recipe';
+import RecipePopup from './recipePopup';
 import styles from '../css/mystyles.module.css';
 import loading from '../image/loading.gif'
 
@@ -10,12 +11,11 @@ export default class App extends React.Component {
       data: [],
       search: "",
       haveSearch: false,
-      searching: false
+      searching: false,
+      showPopup: false
     }
     this.app_id = process.env.REACT_APP_ID;
     this.app_key = process.env.REACT_APP_KEY;
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   fetchData(){
@@ -51,6 +51,13 @@ export default class App extends React.Component {
     });
   }
 
+  handleRecipeClick(){
+    console.log("hi");
+    this.setState({
+      showPopup: true
+    });
+  }
+
   render(){
     return (
       <div className={styles.appContainer}>
@@ -60,8 +67,8 @@ export default class App extends React.Component {
             <p className={styles.subTitle}>Food ideas just a click away</p>
           </div>
         }
-        <form id="searchForm" className={styles.searchContainer} onSubmit={this.handleSubmit}>
-          <input id="searchBar" className={styles.searchBar} type="text" onChange={this.handleChange} value={this.state.search}/>
+        <form id="searchForm" className={styles.searchContainer} onSubmit={this.handleSubmit.bind(this)}>
+          <input id="searchBar" className={styles.searchBar} type="text" onChange={this.handleChange.bind(this)} value={this.state.search}/>
           <button id="searchButton" className={styles.searchButton} type="submit">Search</button>
         </form>
         {this.state.searching ? 
@@ -73,15 +80,18 @@ export default class App extends React.Component {
           <div className={styles.flexWrapCenter}>
             {this.state.data.map(((recipe) => (
               <Recipe
+                handleRecipeClick={this.handleRecipeClick.bind(this)}
                 key={recipe.recipe.label}
                 title={recipe.recipe.label}
                 image={recipe.recipe.image}
                 calories={recipe.recipe.calories}
                 ingredients={recipe.recipe.ingredients}
-                totalNutrients={recipe.recipe.totalNutrients}
               />
             )))}
           </div>
+        }
+        {this.state.showPopup &&
+          <RecipePopup/>
         }
       </div>
     );

@@ -2,6 +2,7 @@ body {
   margin-right: auto;
   margin-left: auto;
   width: 70%;
+  height: 100%;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #5cdb95;
 }
@@ -17,8 +18,20 @@ body {
   text-align: center;
 }
 
-.title {
+.mainTitle {
+  margin: 0px;
+  margin-top: 200px;
+  font-size: 150px;
+  font-weight: bolder;
+  color: #05386b;
+}
+
+.subTitle {
+  margin: 0px;
+  margin-bottom: 50px;
   font-size: 50px;
+  font-weight: bold;
+  color: #edf5e1;
 }
 
 .flexWrapCenter {
@@ -68,7 +81,6 @@ body {
   margin: 20px;
   padding: 30px;
   border-radius: 10px;
-  border: 3px solid #379683;
   text-align: center;
   height: 350px;
   width: 210px;
@@ -85,6 +97,7 @@ body {
 .recipeContainer:hover {
   background-color: #edf5e1;
 }
+
 
 .roundImage {
   width: 200px;

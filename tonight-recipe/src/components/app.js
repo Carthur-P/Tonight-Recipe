@@ -27,6 +27,7 @@ export default class App extends React.Component {
     .catch((err) => {
       console.log(err);
     });
+    console.log(this.state.data);
   }
 
   handleChange(e){
@@ -48,9 +49,9 @@ export default class App extends React.Component {
     return (
       <div className={styles.appContainer}>
         {!this.state.haveSearch && 
-          <div className={styles.title}>
-            <h1>Tonight's Dinner</h1>
-            <h3>Dinner ideas just a click away</h3>
+          <div>
+            <p className={styles.mainTitle}>Tonight's Dinner</p>
+            <p className={styles.subTitle}>Food ideas just a click away</p>
           </div>
         }
         <form id="searchForm" className={styles.searchContainer} onSubmit={this.handleSubmit}>

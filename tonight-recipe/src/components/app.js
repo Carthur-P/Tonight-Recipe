@@ -7,7 +7,8 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       data: [],
-      search: ""
+      search: "",
+      haveSearch: false
     }
     this.app_id = process.env.REACT_APP_ID;
     this.app_key = process.env.REACT_APP_KEY;
@@ -38,13 +39,20 @@ export default class App extends React.Component {
     e.preventDefault();
     this.fetchData();
     this.setState({
-      search: ""
+      search: "",
+      haveSearch: true
     });
   }
 
   render(){
     return (
-      <div>
+      <div className={styles.appContainer}>
+        {!this.state.haveSearch && 
+          <div className={styles.title}>
+            <h1>Tonight's Dinner</h1>
+            <h3>Dinner ideas just a click away</h3>
+          </div>
+        }
         <form id="searchForm" className={styles.searchContainer} onSubmit={this.handleSubmit}>
           <input id="searchBar" className={styles.searchBar} type="text" onChange={this.handleChange} value={this.state.search}/>
           <button id="searchButton" className={styles.searchButton} type="submit">Search</button>

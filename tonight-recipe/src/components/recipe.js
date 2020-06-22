@@ -7,6 +7,10 @@ export default class Recipe extends React.Component{
             <div className={styles.recipeContainer}> 
                 <p className={styles.recipeTitle}>{this.props.title}</p>
                 <img src={this.props.image} className={styles.roundImage} alt="Recipe"/>
+                <div className={styles.info}>
+                    <p>Calories: {Math.ceil(this.props.calories)}</p>
+                    <p>No. of ingredients: {this.props.ingredients.length}</p>
+                </div>
             </div>
         );
     }

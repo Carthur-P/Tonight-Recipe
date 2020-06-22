@@ -1,6 +1,7 @@
 import React from 'react';
 import Recipe from './recipe';
 import styles from '../css/mystyles.module.css';
+import loading from '../image/loading.gif'
 
 export default class App extends React.Component {
   constructor(props){
@@ -64,8 +65,9 @@ export default class App extends React.Component {
           <button id="searchButton" className={styles.searchButton} type="submit">Search</button>
         </form>
         {this.state.searching ? 
-          <div>
-            <h1>Test</h1>
+          <div className={styles.loading}>
+            {/*image was sourced from https://loading.io/*/}
+            <img src={loading} alt="Loading"/>
           </div>
           :
           <div className={styles.flexWrapCenter}>
@@ -74,6 +76,9 @@ export default class App extends React.Component {
                 key={recipe.recipe.label}
                 title={recipe.recipe.label}
                 image={recipe.recipe.image}
+                calories={recipe.recipe.calories}
+                ingredients={recipe.recipe.ingredients}
+                totalNutrients={recipe.recipe.totalNutrients}
               />
             )))}
           </div>

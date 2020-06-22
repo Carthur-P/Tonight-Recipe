@@ -13,7 +13,7 @@ export default class Recipe extends React.Component{
 
     render(){
         return(
-            <div className={styles.recipeContainer} onClick={() => this.props.handleRecipeClick()}> 
+            <div className={styles.recipeContainer} onClick={() => this.props.handleRecipeClick(true)}> 
                 <p className={styles.recipeTitle}>{this.props.title}</p>
                 <img src={this.props.image} className={styles.roundImage} alt="Recipe"/>
                 <div className={styles.info}>

@@ -33,7 +33,6 @@ export default class App extends React.Component {
     .catch((err) => {
       console.log(err);
     });
-    console.log(this.state.data);
   }
 
   handleChange(e){
@@ -51,10 +50,9 @@ export default class App extends React.Component {
     });
   }
 
-  handleRecipeClick(){
-    console.log("hi");
+  handleRecipeClick(popupState){
     this.setState({
-      showPopup: true
+      showPopup: popupState
     });
   }
 
@@ -91,7 +89,7 @@ export default class App extends React.Component {
           </div>
         }
         {this.state.showPopup &&
-          <RecipePopup/>
+          <RecipePopup handleRecipeClick={this.handleRecipeClick.bind(this)}/>
         }
       </div>
     );

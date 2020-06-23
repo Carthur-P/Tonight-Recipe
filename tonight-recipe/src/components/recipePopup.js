@@ -1,4 +1,4 @@
-import React, { useImperativeHandle } from 'react';
+import React from 'react';
 import styles from '../css/mystyles.module.css';
 
 export default class RecipePopup extends React.Component {
@@ -7,9 +7,9 @@ export default class RecipePopup extends React.Component {
         return(
             <div className={styles.recipePopupContainer}>
                 <div className={styles.recipePopup}>
-                    <button onClick={() => this.props.handleRecipeClick(false)}>X</button>
+                    <button className={styles.exitButton} onClick={() => this.props.handleRecipeClick(false)}>X</button>
                     <h1>{this.props.recipeData.title}</h1>
-                    <img src={this.props.recipeData.image} alt="Recipe"/>
+                    <img src={this.props.recipeData.image} className={styles.mainImage} alt="Recipe"/>
                     <h3>Ingredients</h3>
                     {this.props.recipeData.ingredients.map((ingredient, index) => (
                         <p key={index ++}>{ingredient.text}</p>

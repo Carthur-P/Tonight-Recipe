@@ -14,13 +14,12 @@ body {
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
-  align-self: center;
   text-align: center;
+  margin: auto;
 }
 
 .mainTitle {
   margin: 0px;
-  margin-top: 200px;
   font-size: 150px;
   font-weight: bolder;
   color: #05386b;
@@ -28,10 +27,18 @@ body {
 
 .subTitle {
   margin: 0px;
-  margin-bottom: 50px;
   font-size: 50px;
   font-weight: bold;
   color: #edf5e1;
+}
+
+.logo {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 420px;
+  height: 150px;
 }
 
 .flexWrapCenter {
@@ -42,7 +49,7 @@ body {
 }
 
 .searchContainer {
-  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .searchBar {

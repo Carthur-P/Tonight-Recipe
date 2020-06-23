@@ -14,8 +14,8 @@ export default class RecipePopup extends React.Component {
                     {this.props.recipeData.ingredients.map((ingredient, index) => (
                         <p key={index ++}>{ingredient.text}</p>
                     ))}
-                    <p><b>Calories:</b> {Math.ceil(this.props.recipeData.calories)}</p>
                     <p><b>Servings:</b> {this.props.recipeData.servings}</p>
+                    <p><b>Calories:</b> {Math.ceil(this.props.recipeData.calories)}</p>
                 </div>
             </div>
         );

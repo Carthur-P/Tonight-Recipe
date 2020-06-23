@@ -12,7 +12,8 @@ export default class App extends React.Component {
       search: "",
       haveSearch: false,
       searching: false,
-      showPopup: false
+      showPopup: false,
+      recipeData: {}
     }
     this.app_id = process.env.REACT_APP_ID;
     this.app_key = process.env.REACT_APP_KEY;
@@ -50,9 +51,10 @@ export default class App extends React.Component {
     });
   }
 
-  handleRecipeClick(popupState){
+  handleRecipeClick(popupState, recipeData){
     this.setState({
-      showPopup: popupState
+      showPopup: popupState,
+      recipeData: recipeData
     });
   }
 
@@ -83,13 +85,19 @@ export default class App extends React.Component {
                 title={recipe.recipe.label}
                 image={recipe.recipe.image}
                 calories={recipe.recipe.calories}
+                servings={recipe.recipe.yield}
                 ingredients={recipe.recipe.ingredients}
+                dietLabels={recipe.recipe.dietLabels}
+                healthLabels={recipe.recipe.healthLabels}
               />
             )))}
           </div>
         }
         {this.state.showPopup &&
-          <RecipePopup handleRecipeClick={this.handleRecipeClick.bind(this)}/>
+          <RecipePopup 
+            handleRecipeClick={this.handleRecipeClick.bind(this)}
+            recipeData={this.state.recipeData}  
+          />
         }
       </div>
     );

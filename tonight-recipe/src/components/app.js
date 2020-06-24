@@ -52,7 +52,7 @@ export default class App extends React.Component {
     //fetch the data when the search button is clicked
     this.fetchData();
     this.setState({
-      search: "",
+      searchValue: "",
       haveSearch: true
     });
   }

@@ -8,8 +8,12 @@ export default class Recipe extends React.Component{
                 <p className={styles.recipeTitle}>{this.props.title}</p>
                 <img src={this.props.image} className={styles.roundImage} alt="Recipe"/>
                 <div className={styles.info}>
-                    <p>Calories: {Math.ceil(this.props.calories)}</p>
-                    <p>No. of ingredients: {this.props.ingredients.length}</p>
+                    {this.props.dietLabels.map((label) => (
+                        <p key={label}>{label}</p>
+                    ))}
+                    {this.props.healthLabels.map((label) => (
+                        <p key={label}>{label}</p>
+                    ))}
                 </div>
             </div>
         );

@@ -20,6 +20,7 @@ export default class App extends React.Component {
     this.app_key = process.env.REACT_APP_KEY;
   }
 
+  //fetching data from Edamam API
   fetchData(){
     this.setState({
       searching: true
@@ -37,14 +38,17 @@ export default class App extends React.Component {
     });
   }
 
+  //handles search field change
   handleChange(e){
     this.setState({
       search: e.target.value
     });
   }
 
+  //handles the search button being clicked
   handleSubmit(e){
     e.preventDefault();
+    //fetch the data when the search button is clicked
     this.fetchData();
     this.setState({
       search: "",
@@ -52,7 +56,9 @@ export default class App extends React.Component {
     });
   }
 
+  //handles the recipe card being clicked
   handleRecipeClick(popupState, recipeData){
+    //recipeData - data of the recipe that was clicked
     this.setState({
       showPopup: popupState,
       recipeData: recipeData

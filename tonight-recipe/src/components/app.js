@@ -3,6 +3,7 @@ import Recipe from './recipe';
 import RecipePopup from './recipePopup';
 import styles from '../css/mystyles.module.css';
 import loading from '../image/loading.gif'
+import logo from '../image/logo.png'
 
 export default class App extends React.Component {
   constructor(props){
@@ -67,6 +68,8 @@ export default class App extends React.Component {
             <p className={styles.subTitle}>Food ideas just a click away</p>
           </div>
         }
+        {/*image design by Amy Cleaver*/}
+        <img src={logo} className={styles.logo} alt="Logo"/>
         <form id="searchForm" className={styles.searchContainer} onSubmit={this.handleSubmit.bind(this)}>
           <input id="searchBar" className={styles.searchBar} type="text" onChange={this.handleChange.bind(this)} value={this.state.search}/>
           <button id="searchButton" className={styles.searchButton} type="submit">Search</button>

@@ -1,26 +1,23 @@
 body {
-  margin-right: auto;
-  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
   width: 70%;
-  height: 100%;
+  min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #5cdb95;
 }
 
 .appContainer {
-  width: 100%;
-  height: 100%;
+  min-width: 100%;
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
-  justify-content: center;
-  align-self: center;
   text-align: center;
 }
 
 .mainTitle {
   margin: 0px;
-  margin-top: 200px;
   font-size: 150px;
   font-weight: bolder;
   color: #05386b;
@@ -28,10 +25,18 @@ body {
 
 .subTitle {
   margin: 0px;
-  margin-bottom: 50px;
   font-size: 50px;
   font-weight: bold;
   color: #edf5e1;
+}
+
+.logo {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 420px;
+  height: 150px;
 }
 
 .flexWrapCenter {
@@ -42,7 +47,7 @@ body {
 }
 
 .searchContainer {
-  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .searchBar {
@@ -119,7 +124,12 @@ body {
   z-index: 1;
   left: 0px;
   top: 0px;
-  background-color: rgba(0,0,0,0.6); /*Have to use RGB so that opacity does not get pass to child div*/
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.6
+  ); /*Have to use RGB so that opacity does not get pass to child div*/
 }
 
 .recipePopup {
@@ -148,21 +158,21 @@ body {
 }
 
 .exitButton {
-    position: absolute;
-    left: 82%;
-    width: 40px;
-    height: 40px;
-    padding: 5px;
-    margin-right: 10px;
-    background-color: #05386b;
-    font-size: 15px;
-    color: #edf5e1;
-    font-weight: bold;
-    box-shadow: none;
-    border: 0px;
-    border-radius: 50%;
+  position: absolute;
+  left: 82%;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  margin-right: 10px;
+  background-color: #05386b;
+  font-size: 15px;
+  color: #edf5e1;
+  font-weight: bold;
+  box-shadow: none;
+  border: 0px;
+  border-radius: 50%;
 }
 
 .exitButton:hover {
-    background-color: #379683;
+  background-color: #379683;
 }

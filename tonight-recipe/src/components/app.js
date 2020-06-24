@@ -88,14 +88,14 @@ export default class App extends React.Component {
             <img src={loading} alt="Loading"/>
           </div>
           :/*else display the recipe cards section*/
-          <div className={styles.flexWrapCenter}>          
+          <div>          
             <SeachBar 
               handleSubmit={this.handleSubmit.bind(this)}
               handleChange={this.handleChange.bind(this)}
               searchValue={this.state.searchValue}
             />
-            {this.state.data.map(((recipe) => (
-              <div>
+            <div className={styles.recipeContainer}>
+              {this.state.data.map(((recipe) => (
                 <Recipe
                   handleRecipeClick={this.handleRecipeClick.bind(this)}
                   key={recipe.recipe.label}
@@ -107,8 +107,8 @@ export default class App extends React.Component {
                   dietLabels={recipe.recipe.dietLabels}
                   healthLabels={recipe.recipe.healthLabels}
                 />
-              </div>
-            )))}
+              )))}
+            </div>
           </div>          
         }
         

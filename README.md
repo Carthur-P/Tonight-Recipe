@@ -41,7 +41,7 @@ nodejs download: https://nodejs.org/en/download/
 # Application
 The user will be greeted with the title page which will contain a search bar that the user can use to search different recipe ideas. User can enter any ingredient or food keyword into this search bar to find related recipes based on the search criteria. Once they clicked the search button, the application will find some recipe ideas and display them to the user. Each recipe cards will show the name of the recipe, image and some food label associated with the recipe. For example, non-dairy, vegetarian, gluten-free etc. The user can expand the recipe by click on the recipe cards. This will then popup an expanded view of the recipe showing all the ingredients/measurements needed, number of servings and calorie number of the recipe. If the application cannot find any recipe, the user will be prompted.  
 
-![Tonignt Recipe](./images/demo.gif)
+<img src="./images/demo.gif" alt="Demo" width=100%/>
 
 ## Title Page
 

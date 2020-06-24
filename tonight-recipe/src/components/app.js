@@ -5,6 +5,7 @@ import Recipe from './recipe';
 import RecipePopup from './recipePopup';
 import loading from '../image/loading.gif'
 import logo from '../image/logo.png'
+import error from '../image/error.gif';
 
 export default class App extends React.Component {
   constructor(props){
@@ -80,6 +81,12 @@ export default class App extends React.Component {
               handleChange={this.handleChange.bind(this)}
               searchValue={this.state.searchValue}
             />
+            {this.state.haveSearch &&
+              <div className={styles.error}>
+                <p className={styles.error}><b>Sorry we could not find any recipe</b></p>
+                <img src={error} alt="Error"/>
+              </div>
+            }
           </div>
           : /*else display recipe cards section*/
           this.state.searching ? /*if the data is being fetch show the loading screen*/

@@ -30,7 +30,7 @@ Edamam Recipe Search API
 To run the project locally using the source code follow the steps below.
 
 ## Prerequisite
-You must have npm install on your machine which is installed with nodejs. Follow the link below to download the latest version of nodejs.
+You must have npm install on your machine which is installed with nodejs. Follow the link below to download and install the latest version of nodejs.
 
 nodejs download: https://nodejs.org/en/download/
 

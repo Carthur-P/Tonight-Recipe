@@ -84,6 +84,7 @@ export default class App extends React.Component {
             {this.state.haveSearch &&
               <div className={styles.error}>
                 <p className={styles.error}><b>Sorry we could not find any recipe</b></p>
+                {/*image was sourced from https://loading.io/*/}
                 <img src={error} alt="Error"/>
               </div>
             }

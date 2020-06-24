@@ -1,3 +1,17 @@
+::-webkit-scrollbar{
+  width: 12px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(55,150,131,0.7);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(55,150,131,1);
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -18,7 +32,7 @@ body {
 
 .mainTitle {
   margin: 0px;
-  font-size: 150px;
+  font-size: 130px;
   font-weight: bolder;
   color: #05386b;
 }

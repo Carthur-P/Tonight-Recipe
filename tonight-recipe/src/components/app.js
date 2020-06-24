@@ -69,40 +69,7 @@ export default class App extends React.Component {
   render(){
     return (
       <div className={styles.appContainer}>
-        {this.state.haveSearch ? /*check if user have searched before*/
-          /*if user have searched before, display recipe cards section*/
-          this.state.searching ? /*check if the data is being fetch*/
-            /*if data is still being fetch, show loading screen*/
-            <div className={styles.loading}>
-              {/*image was sourced from https://loading.io/*/}
-              <img src={loading} alt="Loading"/>
-            </div>
-            :
-            /*if data have been fetch, display the recipe cards section*/
-            <div className={styles.flexWrapCenter}>          
-              <SeachBar 
-                handleSubmit={this.handleSubmit.bind(this)}
-                handleChange={this.handleChange.bind(this)}
-                searchValue={this.state.searchValue}
-              />
-              {this.state.data.map(((recipe) => (
-                <div>
-                  <Recipe
-                    handleRecipeClick={this.handleRecipeClick.bind(this)}
-                    key={recipe.recipe.label}
-                    title={recipe.recipe.label}
-                    image={recipe.recipe.image}
-                    calories={recipe.recipe.calories}
-                    servings={recipe.recipe.yield}
-                    ingredients={recipe.recipe.ingredients}
-                    dietLabels={recipe.recipe.dietLabels}
-                    healthLabels={recipe.recipe.healthLabels}
-                  />
-                </div>
-              )))}
-            </div>      
-          :
-          /*if user have never search before then display landing page*/
+        {this.state.data.length === 0 && this.state.searching === false ? /*if there is no recipe data and data is not currently being fetch then display landing page*/
           <div>
             <p className={styles.mainTitle}>Tonight's Dinner</p>
             <p className={styles.subTitle}>Food ideas just a click away</p>
@@ -114,6 +81,35 @@ export default class App extends React.Component {
               searchValue={this.state.searchValue}
             />
           </div>
+          : /*else display recipe cards section*/
+          this.state.searching ? /*if the data is being fetch show the loading screen*/
+          <div className={styles.loading}>
+            {/*image was sourced from https://loading.io/*/}
+            <img src={loading} alt="Loading"/>
+          </div>
+          :/*else display the recipe cards section*/
+          <div className={styles.flexWrapCenter}>          
+            <SeachBar 
+              handleSubmit={this.handleSubmit.bind(this)}
+              handleChange={this.handleChange.bind(this)}
+              searchValue={this.state.searchValue}
+            />
+            {this.state.data.map(((recipe) => (
+              <div>
+                <Recipe
+                  handleRecipeClick={this.handleRecipeClick.bind(this)}
+                  key={recipe.recipe.label}
+                  title={recipe.recipe.label}
+                  image={recipe.recipe.image}
+                  calories={recipe.recipe.calories}
+                  servings={recipe.recipe.yield}
+                  ingredients={recipe.recipe.ingredients}
+                  dietLabels={recipe.recipe.dietLabels}
+                  healthLabels={recipe.recipe.healthLabels}
+                />
+              </div>
+            )))}
+          </div>          
         }
         
         {this.state.showPopup && /*if recipe card has been clicked, display recipe popup data*/

@@ -34,7 +34,9 @@ You must have npm install on your machine which is installed with nodejs. Follow
 
 nodejs download: https://nodejs.org/en/download/
 
-1. Clone this repo and go into the directory <code>tonight-recipe</code>
+## Step by Step
+
+1. Clone this repo and navigate into the directory <code>tonight-recipe</code>
 2. Run <code>npm install</code> to get all the project's dependency 
 3. Run <code>npm run start</code> to run the script that will serve to application locally (localhost:3000) 
 

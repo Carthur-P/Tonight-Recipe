@@ -87,7 +87,7 @@ body {
   padding: 30px;
   border-radius: 10px;
   text-align: center;
-  height: 380px;
+  min-height: 380px;
   width: 210px;
   display: flex;
   flex-wrap: wrap;

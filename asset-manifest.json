@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Tonight-Recipe/static/css/main.8a140bea.chunk.css",
+    "main.js": "/Tonight-Recipe/static/js/main.4077b6c3.chunk.js",
+    "main.js.map": "/Tonight-Recipe/static/js/main.4077b6c3.chunk.js.map",
+    "runtime-main.js": "/Tonight-Recipe/static/js/runtime-main.6abe4b05.js",
+    "runtime-main.js.map": "/Tonight-Recipe/static/js/runtime-main.6abe4b05.js.map",
+    "static/js/2.a0f1ecc5.chunk.js": "/Tonight-Recipe/static/js/2.a0f1ecc5.chunk.js",
+    "static/js/2.a0f1ecc5.chunk.js.map": "/Tonight-Recipe/static/js/2.a0f1ecc5.chunk.js.map",
+    "index.html": "/Tonight-Recipe/index.html",
+    "precache-manifest.2f6957626d4cef956222fa727491881d.js": "/Tonight-Recipe/precache-manifest.2f6957626d4cef956222fa727491881d.js",
+    "service-worker.js": "/Tonight-Recipe/service-worker.js",
+    "static/css/main.8a140bea.chunk.css.map": "/Tonight-Recipe/static/css/main.8a140bea.chunk.css.map",
+    "static/js/2.a0f1ecc5.chunk.js.LICENSE.txt": "/Tonight-Recipe/static/js/2.a0f1ecc5.chunk.js.LICENSE.txt",
+    "static/media/error.gif": "/Tonight-Recipe/static/media/error.f3fbadd1.gif",
+    "static/media/loading.gif": "/Tonight-Recipe/static/media/loading.cbc07a4e.gif",
+    "static/media/logo.png": "/Tonight-Recipe/static/media/logo.a1f97ab1.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6abe4b05.js",
+    "static/js/2.a0f1ecc5.chunk.js",
+    "static/css/main.8a140bea.chunk.css",
+    "static/js/main.4077b6c3.chunk.js"
+  ]
+}

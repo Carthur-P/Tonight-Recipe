@@ -6,7 +6,7 @@ A web application that allows user to search different recipe ideas based on ing
 
 **Please note** that the Edamam API used is a free developer version which limits the number of searches to only 5 per minutes. If the search does not work, please wait for a minute and try again. If the search still does not work, please notify the developer by leaving a ticket issue.   
 
-**Checkout out the web application by clicking the link below:** 
+**Checkout out the web application by clicking the link below:**   
 https://carthur-p.github.io/Tonight-Recipe/
 
 # Technologies Used

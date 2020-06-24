@@ -2,7 +2,7 @@
 
 **Developed by** Carthur Pongpatimet
 
-A web application that allows user to search different recipe ideas based on ingredients and recipe keywords. The application was developed using React and CSS for the frontend and uses Edamam recipe search API (Link: https://developer.edamam.com/edamam-docs-recipe-api) to collect recipe data based on user's input. The project was created using the npm library <code>create-react-app</code>. (Link: https://www.npmjs.com/package/create-react-app)
+A web application that allows user to search different recipe ideas based on ingredients and recipe keywords. The application was developed using React and CSS for the frontend and uses Edamam recipe search API (Link: https://developer.edamam.com/edamam-docs-recipe-api) to collect recipe data based on user's input. The project was created using the npm library <code>create-react-app</code>. (Link: https://www.npmjs.com/package/create-react-app).
 
 **Please note** that the Edamam API used is a free developer version which limits the number of searches to only 5 per minutes. If the search does not work, please wait for a minute and try again. If the search still does not work, please notify the developer by leaving a ticket issue.   
 
@@ -27,10 +27,10 @@ Edamam Recipe Search API
 - Responsive design
 
 # Installation
-To run the project locally using the source code
+To run the project locally using the source code follow the steps below.
 
 ## Prerequisite
-You must have npm install on your machine which is installed with nodejs. Follow the link below to download the latest version of nodejs
+You must have npm install on your machine which is installed with nodejs. Follow the link below to download the latest version of nodejs.
 
 nodejs download: https://nodejs.org/en/download/
 

@@ -49,19 +49,19 @@ The user will be greeted with the title page which will contain a search bar tha
 
 ![Landing Page](./images/title.JPG)
 
-# Searching
+## Searching
 
 <img src="./images/searching.gif" alt="Searching" width="100%"/>
 
-# Recipe Found
+## Recipe Found
 
 ![Recipe Cards](./images/recipeCards.JPG)
 
-# Recipe Expanded
+## Recipe Expanded
 
 ![Recipe Expanded](./images/recipeExpanded.JPG)
 
-# No Recipe found
+## No Recipe found
 
 ![Search Error](./images/foundNothing.JPG)
 

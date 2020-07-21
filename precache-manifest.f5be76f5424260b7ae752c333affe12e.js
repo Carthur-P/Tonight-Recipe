@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0840678230d11d0f599b60f11401b991",
+    "revision": "e364e6fc74594445674dc51e04f388c3",
     "url": "/Tonight-Recipe/index.html"
   },
   {
-    "revision": "27c83eebdde9542bc9f1",
-    "url": "/Tonight-Recipe/static/css/main.8a140bea.chunk.css"
+    "revision": "980f3a780f5c2e80353f",
+    "url": "/Tonight-Recipe/static/css/main.b3bdde94.chunk.css"
   },
   {
     "revision": "4acb93a9f64563e4bc62",
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Tonight-Recipe/static/js/2.a0f1ecc5.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "27c83eebdde9542bc9f1",
+    "revision": "980f3a780f5c2e80353f",
     "url": "/Tonight-Recipe/static/js/main.4077b6c3.chunk.js"
   },
   {

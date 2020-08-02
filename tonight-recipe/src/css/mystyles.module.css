@@ -17,7 +17,7 @@ body {
   justify-content: center;
   align-items: center;
   margin: auto;
-  width: 70%;
+  width: 70vw;
   min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #5cdb95;
@@ -215,4 +215,49 @@ body {
   height: 40px;
   margin-left: 10px;
   margin-bottom: 10px;
+}
+
+/*Large Phone (iPhone X/Pixel XL)*/
+@media screen and (max-width: 500px) {  
+  .mainTitle {
+    font-size: 80px;
+  }
+  
+  .subTitle {
+    font-size: 25px;
+  }
+  
+  .logo {
+    width: 350px;
+    height: 120px;
+  }
+
+  .error {
+    font-size: 25px;
+  }
+  
+  .searchButton {
+    padding-left: 5px;
+  }
+
+  .mainImage {
+    width: 250px
+  }
+
+  .exitButton {
+    width: 25px;
+    height: 25px;
+    font-size: 10px;
+  }
+}
+
+/*Small Phone (iPhone 8 and later)*/
+@media screen and (max-width: 380px) {
+  .mainTitle {
+    font-size: 75px;
+  }
+
+  .mainImage {
+    width: 200px
+  }
 }

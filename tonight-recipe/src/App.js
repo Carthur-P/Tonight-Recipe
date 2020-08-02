@@ -1,11 +1,12 @@
 import React from 'react';
-import styles from '../css/mystyles.module.css';
-import SeachBar from './searchBar';
-import Recipe from './recipe';
-import RecipePopup from './recipePopup';
-import loading from '../image/loading.gif'
-import logo from '../image/logo.png'
-import error from '../image/error.gif';
+import styles from './css/mystyles.module.css';
+import { auth } from './components/config/firebase.js';
+import SeachBar from './components/searchBar';
+import Recipe from './components/recipe';
+import RecipePopup from './components/recipePopup';
+import loading from './image/loading.gif'
+import logo from './image/logo.png'
+import error from './image/error.gif';
 
 export default class App extends React.Component {
   constructor(props){

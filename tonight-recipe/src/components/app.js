@@ -72,7 +72,7 @@ export default class App extends React.Component {
       <div className={styles.appContainer}>
         {this.state.data.length === 0 && this.state.searching === false ? /*if there is no recipe data and data is not currently being fetch then display landing page*/
           <div>
-            <p className={styles.mainTitle}>Tonight's Dinner</p>
+            <p className={styles.mainTitle}>Tonight's Recipe</p>
             <p className={styles.subTitle}>Food ideas just a click away</p>
             {/*image design by Amy Cleaver*/}
             <img src={logo} className={styles.logo} alt="Logo"/>      

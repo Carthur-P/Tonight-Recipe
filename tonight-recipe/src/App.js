@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './css/mystyles.module.css';
-import { auth } from './components/config/firebase.js';
 import SeachBar from './components/searchBar';
 import Recipe from './components/recipe';
 import RecipePopup from './components/recipePopup';
+import Account from './components/account';
 import ErrorMessage from './components/error';
 import loading from './image/loading.gif'
 import logo from './image/logo.png'
@@ -73,6 +73,7 @@ export default class App extends React.Component {
     if (this.state.data.length === 0 && this.state.searching === false) {
       return (
         <div className={styles.appContainer}>
+          <Account/>
           <p className={styles.mainTitle}>Tonight's Recipe</p>
           <p className={styles.subTitle}>Food ideas just a click away</p>
           {/*image design by Amy Cleaver*/}

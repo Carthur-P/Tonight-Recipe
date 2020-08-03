@@ -21,14 +21,14 @@ export default class Account extends React.Component{
     render() {
         if(this.state.user){
             return(
-                <div>
-                    <h1>Logout</h1>
+                <div className={styles.accountContainer}>
+                    <button>Logout</button>
                 </div>
             );
         } else {
             return (
-                <div>
-                    <h1>login</h1>
+                <div className={styles.accountContainer}>
+                    <button>login</button>
                 </div>
             );
         }

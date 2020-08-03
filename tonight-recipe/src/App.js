@@ -95,6 +95,7 @@ export default class App extends React.Component {
             < img src={loading} alt="Loading" />
             :
             <div>
+              <Account />
               <SeachBar
                 handleSubmit={this.handleSubmit.bind(this)}
                 handleChange={this.handleChange.bind(this)}

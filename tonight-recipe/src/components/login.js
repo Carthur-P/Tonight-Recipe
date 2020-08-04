@@ -8,6 +8,7 @@ export default function Login(){
                 <input type="email" placeholder="Email" required></input>
                 <input type="password" placeholder="Password" required></input>
                 <button>Login</button>
+                <button className={styles.createAccountButton}>Create</button>
             </form>
         </div>
     );

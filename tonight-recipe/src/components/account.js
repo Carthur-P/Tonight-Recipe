@@ -27,7 +27,6 @@ export default class Account extends React.Component {
         this.setState({
             showLogin: !this.state.showLogin
         });
-        console.log(this.state.showLogin);
     }
 
     render() {
@@ -49,7 +48,10 @@ export default class Account extends React.Component {
                         classNames={{
                             enter: styles.loginFormContainerEnter,
                             enterActive: styles.loginFormContainerEnterActive,
-                            enterDone: styles.loginFormContainerEnterDone
+                            enterDone: styles.loginFormContainerEnterDone,
+                            exit: styles.loginFormContainerExit,
+                            exitActive: styles.loginFormContainerExitActive,
+                            exitDone: styles.loginFormContainerExitDone
                         }}
                         unmountOnExit
                     >

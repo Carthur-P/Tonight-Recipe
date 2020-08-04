@@ -243,28 +243,68 @@ body {
   justify-content: center;
   position: absolute;
   background-color: #edf5e1;
-  padding: 10px;
-  right: 0px;
-  top: 55px;
+  padding: 20px;
+  right: 35px;
+  top: 45px;
   border-radius: 5px;
+  box-shadow: 0px 0px 10px #379683;
 }
 
 .loginForm input {
   margin-bottom: 15px;
   font-size: 1.2rem;
+  outline: none;
+  border: solid 2px #05386b;
+  border-radius: 5px;
+  padding: 5px;
 }
 
+.loginForm button {
+  outline: none;
+  border: 0px;
+  background-color: #05386b;
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+    font-size: 1rem;
+    margin-top: 15px;
+}
+
+.createAccountButton{
+  background-color: #379683 !important;
+}
+
+/*Classes used for CSSTransition (React transition group)*/
 .loginFormContainerEnter {
   opacity: 0;
+  transform: translate(10px, -100px);
 }
 
 .loginFormContainerEnterActive {
-  transition: opacity 1s;
+  transition: opacity 1s, transform 0.6s;
+  opacity: 1;
+  transform: translate(0px, -50px);
+}
+
+.loginFormContainerEnterDone {
+  opacity: 1;
+  transform: translate(0px, -50px);
+}
+
+.loginFormContainerExit{
+  transform: translate(0px, -50px);
   opacity: 1;
 }
 
-.loginFormContainerEnterDone{
-  opacity: 1;
+.loginFormContainerExitActive{
+  transition: opacity 0.4s, transform 1s;
+  opacity: 0;
+  transform: translate(10px, -100px);
+}
+
+.loginFormContainerExitDone{
+  opacity: 0;
+  transform: translate(10px, -100px);
 }
 
 /*Large Phone (iPhone X/Pixel XL)*/

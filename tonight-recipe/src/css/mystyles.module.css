@@ -220,19 +220,51 @@ body {
   position: absolute;
   right: 0px;
   top: 0px;
-  margin: 20px;
+  margin: 10px;
 }
 
-.accountContainer button {
+.accountButton {
+  display: flex;
+  align-items: center;
   padding: 10px;
   border: 0px;
-  border-radius: 5px;
+  border-radius: 50%;
   background-color: #05386b;
   color: white;
 }
 
 .accountContainer button:focus {
   outline: none;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  background-color: #edf5e1;
+  padding: 10px;
+  right: 0px;
+  top: 55px;
+  border-radius: 5px;
+}
+
+.loginForm input {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.loginFormContainerEnter {
+  opacity: 0;
+}
+
+.loginFormContainerEnterActive {
+  transition: opacity 1s;
+  opacity: 1;
+}
+
+.loginFormContainerEnterDone{
+  opacity: 1;
 }
 
 /*Large Phone (iPhone X/Pixel XL)*/

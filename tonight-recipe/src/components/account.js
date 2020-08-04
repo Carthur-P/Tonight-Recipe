@@ -13,6 +13,7 @@ export default class Account extends React.Component {
             showLogin: false
         }
         this.handleLoginClick = this.handleLoginClick.bind(this);
+        this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -26,6 +27,14 @@ export default class Account extends React.Component {
     handleLoginClick() {
         this.setState({
             showLogin: !this.state.showLogin
+        });
+    }
+
+    handleLoginSubmit(e, account){
+        e.preventDefault();
+        auth.signInWithEmailAndPassword(account.email, account.password)
+        .catch((err) => {
+            console.log(err);
         });
     }
 
@@ -55,7 +64,7 @@ export default class Account extends React.Component {
                         }}
                         unmountOnExit
                     >
-                        <Login/>
+                        <Login handleLoginSubmit={this.handleLoginSubmit}/>
                     </CSSTransition>
                 </div>
             );

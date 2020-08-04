@@ -1,15 +1,30 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from '../css/mystyles.module.css';
 
-export default function Login(){
+export default function Login(props){
+    const [account, setAccount] = useState({
+        email: "",
+        password: ""
+    });
+
+    function handleOnChange(e){
+        e.persist()
+        setAccount((preAccount) => {
+            return {
+                ...preAccount,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
+
     return(
-        <div>
-            <form className={styles.loginForm}>
-                <input type="email" placeholder="Email" required></input>
-                <input type="password" placeholder="Password" required></input>
+        <div className={styles.loginFormContainer}>
+            <form onSubmit={(e) => props.handleLoginSubmit(e, account)} className={styles.loginForm}>
+                <input type="email" name="email" placeholder="Email" onChange={handleOnChange} required></input>
+                <input type="password" name="password" placeholder="Password" onChange={handleOnChange} required></input>
                 <button>Login</button>
-                <button className={styles.createAccountButton}>Create</button>
             </form>
+            <button className={styles.createAccountButton}>Create</button>
         </div>
     );
 }

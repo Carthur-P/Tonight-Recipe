@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styles from '../css/mystyles.module.css';
 
-export default function Login(props){
+export default function Login(props) {
     const [account, setAccount] = useState({
         email: "",
         password: ""
     });
 
-    function handleOnChange(e){
+    function handleOnChange(e) {
         e.persist()
         setAccount((preAccount) => {
             return {
@@ -17,7 +17,7 @@ export default function Login(props){
         })
     }
 
-    return(
+    return (
         <div className={styles.loginFormContainer}>
             <form onSubmit={(e) => props.handleLoginSubmit(e, account)} className={styles.loginForm}>
                 <input type="email" name="email" placeholder="Email" onChange={handleOnChange} required></input>
@@ -25,6 +25,9 @@ export default function Login(props){
                 <button>Login</button>
             </form>
             <button className={styles.createAccountButton}>Create</button>
+            {props.showError &&
+                <p className={styles.formError}>Wrong username or password</p>
+            }
         </div>
     );
 }

@@ -324,6 +324,14 @@ body {
   opacity: 0.8;
 } */
 
+.formError{
+  color: crimson;
+  padding: 0px;
+  margin: 0px;
+  margin-top: 15px;
+  font-size: 1rem;
+}
+
 /*Large Phone (iPhone X/Pixel XL)*/
 @media screen and (max-width: 500px) {
   .mainTitle {

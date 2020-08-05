@@ -19,14 +19,14 @@ export default function SignUp(props){
 
     return(
         <div className={styles.loginFormContainer}>
-            <form onSubmit={(e) => props.handleLoginSubmit(e, info)} className={styles.loginForm}>
+            <form onSubmit={(e) => props.handleCreateSubmit(e, info)} className={styles.loginForm}>
                 <input type="text" name="name" placeholder="Name" onChange={handleOnChange} required></input>
                 <input type="email" name="email" placeholder="Email" onChange={handleOnChange} required></input>
                 <input type="password" name="password" placeholder="Password" onChange={handleOnChange} required></input>
                 <input type="password" name="confirmPassword" placeholder="Confirm Password" onChange={handleOnChange} required></input>
                 <button>Create</button>
             </form>
-            <button>Cancel</button>
+            <button className={styles.cancelButton} onClick={() => props.handleCancelClick()}>Cancel</button>
             {/* {props.showError &&
                 <p className={styles.formError}>Wrong username or password</p>
             } */}

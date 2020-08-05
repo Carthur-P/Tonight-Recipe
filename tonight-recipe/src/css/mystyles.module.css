@@ -276,6 +276,11 @@ body {
   margin-top: 15px;
 }
 
+.cancelButton{
+  background-color: crimson !important;
+  margin-top: 15px;
+}
+
 /*Classes used for CSSTransition (React transition group)*/
 .loginFormContainerEnter {
   opacity: 0;
@@ -309,7 +314,7 @@ body {
   transform: translate(25px, -35px);
 }
 
-.logoutButton{
+.logoutButton {
   padding: 10px;
   outline: none;
   background-color: #05386b;
@@ -324,7 +329,7 @@ body {
   opacity: 0.8;
 } */
 
-.formError{
+.formError {
   color: crimson;
   padding: 0px;
   margin: 0px;

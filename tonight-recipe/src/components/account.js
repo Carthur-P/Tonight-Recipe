@@ -19,6 +19,7 @@ export default class Account extends React.Component {
         this.handleAccountClick = this.handleAccountClick.bind(this);
         this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
         this.handleCreateClick = this.handleCreateClick.bind(this);
+        this.handleCancelClick = this.handleCancelClick.bind(this);
     }
 
     componentDidMount() {
@@ -40,6 +41,12 @@ export default class Account extends React.Component {
     handleCreateClick(){
         this.setState({
             showSignUp: true
+        });
+    }
+
+    handleCancelClick(){
+        this.setState({
+            showSignUp: false
         });
     }
 
@@ -97,16 +104,16 @@ export default class Account extends React.Component {
                         in={this.state.showSignUp}
                         timeout={1000}
                         unmountOnExit
-                        classNames={{
-                            enter: styles.loginFormContainerEnter,
-                            enterActive: styles.loginFormContainerEnterActive,
-                            enterDone: styles.loginFormContainerEnterDone,
-                            exit: styles.loginFormContainerExit,
-                            exitActive: styles.loginFormContainerExitActive,
-                            exitDone: styles.loginFormContainerExitDone
-                        }}
+                        // classNames={{
+                        //     enter: styles.loginFormContainerEnter,
+                        //     enterActive: styles.loginFormContainerEnterActive,
+                        //     enterDone: styles.loginFormContainerEnterDone,
+                        //     exit: styles.loginFormContainerExit,
+                        //     exitActive: styles.loginFormContainerExitActive,
+                        //     exitDone: styles.loginFormContainerExitDone
+                        // }}
                     >
-                        <SignUp/>
+                        <SignUp handleCancelClick={this.handleCancelClick}/>
                     </CSSTransition>
                 </div>
             );

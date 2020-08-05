@@ -3,6 +3,7 @@ import styles from '../css/mystyles.module.css';
 import { CSSTransition } from 'react-transition-group';
 import { auth } from './config/firebase.js';
 import Login from './login';
+import SignUp from './signup';
 import account from '../image/account.png';
 import heart from '../image/heart.png';
 
@@ -12,10 +13,12 @@ export default class Account extends React.Component {
         this.state = {
             user: null,
             showLogin: false,
-            showError: false
+            showError: false,
+            showSignUp: false
         }
-        this.handleLoginClick = this.handleLoginClick.bind(this);
+        this.handleAccountClick = this.handleAccountClick.bind(this);
         this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+        this.handleCreateClick = this.handleCreateClick.bind(this);
     }
 
     componentDidMount() {
@@ -26,16 +29,17 @@ export default class Account extends React.Component {
         });
     }
 
-    handleLoginClick() {
+    handleAccountClick() {
         this.setState({
             showLogin: !this.state.showLogin,
-            showError: false
+            showError: false,
+            showSignUp: false
         });
     }
 
-    handleLogoutClick(){
-        auth.signOut().catch((err) => {
-            console.log(err);
+    handleCreateClick(){
+        this.setState({
+            showSignUp: true
         });
     }
 
@@ -55,6 +59,12 @@ export default class Account extends React.Component {
         });
     }
 
+    handleLogoutClick() {
+        auth.signOut().catch((err) => {
+            console.log(err);
+        });
+    }
+
     render() {
         if (this.state.user) {
             return (
@@ -66,7 +76,7 @@ export default class Account extends React.Component {
         } else {
             return (
                 <div className={styles.accountContainer}>
-                    <img className={styles.accountButton} src={account} onClick={this.handleLoginClick}/>
+                    <img className={styles.accountButton} src={account} onClick={this.handleAccountClick}/>
                     <CSSTransition
                         in={this.state.showLogin}
                         timeout={1000}
@@ -80,7 +90,23 @@ export default class Account extends React.Component {
                         }}
                         unmountOnExit
                     >
-                        <Login handleLoginSubmit={this.handleLoginSubmit} showError={this.state.showError}/>
+                        <Login handleCreateClick={this.handleCreateClick} handleLoginSubmit={this.handleLoginSubmit} showError={this.state.showError}/>
+                    </CSSTransition>
+                    {console.log(this.state.showSignUp)}
+                    <CSSTransition 
+                        in={this.state.showSignUp}
+                        timeout={1000}
+                        unmountOnExit
+                        classNames={{
+                            enter: styles.loginFormContainerEnter,
+                            enterActive: styles.loginFormContainerEnterActive,
+                            enterDone: styles.loginFormContainerEnterDone,
+                            exit: styles.loginFormContainerExit,
+                            exitActive: styles.loginFormContainerExitActive,
+                            exitDone: styles.loginFormContainerExitDone
+                        }}
+                    >
+                        <SignUp/>
                     </CSSTransition>
                 </div>
             );

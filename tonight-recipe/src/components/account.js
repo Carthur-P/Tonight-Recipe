@@ -3,7 +3,8 @@ import styles from '../css/mystyles.module.css';
 import { CSSTransition } from 'react-transition-group';
 import { auth } from './config/firebase.js';
 import Login from './login';
-import account from '../image/account1.png';
+import account from '../image/account.png';
+import heart from '../image/heart.png';
 
 export default class Account extends React.Component {
     constructor(props) {
@@ -30,6 +31,12 @@ export default class Account extends React.Component {
         });
     }
 
+    handleLogoutClick(){
+        auth.signOut().catch((err) => {
+            console.log(err);
+        });
+    }
+
     handleLoginSubmit(e, account){
         e.preventDefault();
         auth.signInWithEmailAndPassword(account.email, account.password)
@@ -42,9 +49,8 @@ export default class Account extends React.Component {
         if (this.state.user) {
             return (
                 <div className={styles.accountContainer}>
-                    <button>
-                        <img src={account} />
-                    </button>
+                    <img src={heart} className={styles.likeButton}/>
+                    <button onClick={this.handleLogoutClick} className={styles.logoutButton}>Logout</button>
                 </div>
             );
         } else {

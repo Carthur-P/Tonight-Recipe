@@ -217,6 +217,8 @@ body {
 }
 
 .accountContainer {
+  display: flex;
+  align-items: center;
   position: absolute;
   right: 0px;
   top: 0px;
@@ -225,7 +227,6 @@ body {
 
 .accountButton {
   display: flex;
-  align-items: center;
   padding: 10px;
   border: 0px;
   border-radius: 50%;
@@ -307,6 +308,21 @@ body {
   opacity: 0;
   transform: translate(25px, -35px);
 }
+
+.logoutButton{
+  padding: 10px;
+  outline: none;
+  background-color: #05386b;
+  color: white;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-left: 15px;
+}
+
+/* .likeButton:hover{
+  opacity: 0.8;
+} */
 
 /*Large Phone (iPhone X/Pixel XL)*/
 @media screen and (max-width: 500px) {

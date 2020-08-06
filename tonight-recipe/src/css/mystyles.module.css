@@ -234,24 +234,20 @@ body {
   color: white;
 }
 
-.accountContainer button:focus {
-  outline: none;
-}
-
-.loginFormContainer {
+.formContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   position: absolute;
-  background-color: #edf5e1;
-  padding: 20px;
   right: 35px;
   top: 45px;
+  background-color: #edf5e1;
+  padding: 20px;
   border-radius: 5px;
   box-shadow: 0px 0px 10px #379683;
+  overflow: hidden;
 }
 
-.loginFormContainer input {
+.formContainer input {
   margin-bottom: 15px;
   font-size: 1.2rem;
   outline: none;
@@ -260,7 +256,7 @@ body {
   padding: 5px;
 }
 
-.loginFormContainer button {
+.formContainer button {
   outline: none;
   border: 0px;
   background-color: #05386b;
@@ -276,42 +272,98 @@ body {
   margin-top: 15px;
 }
 
-.cancelButton{
+.cancelButton {
   background-color: crimson !important;
   margin-top: 15px;
 }
 
-/*Classes used for CSSTransition (React transition group)*/
-.loginFormContainerEnter {
+/*Classes used for form component (React transition group)*/
+.formContainerEnter {
   opacity: 0;
   transform: translate(25px, -35px);
 }
 
-.loginFormContainerEnterActive {
-  transition: opacity 1s, transform 0.6s;
+.formContainerEnterActive {
+  transition: opacity 0.8s, transform 0.6s;
   opacity: 1;
   transform: translate(0px, 0px);
 }
 
-.loginFormContainerEnterDone {
+.formContainerEnterDone {
   opacity: 1;
   transform: translate(0px, 0px);
 }
 
-.loginFormContainerExit {
+.formContainerExit {
   transform: translate(0px, 0px);
   opacity: 1;
 }
 
-.loginFormContainerExitActive {
+.formContainerExitActive {
   transition: opacity 0.4s, transform 1s;
   opacity: 0;
   transform: translate(25px, -35px);
 }
 
-.loginFormContainerExitDone {
+.formContainerExitDone {
   opacity: 0;
   transform: translate(25px, -35px);
+}
+
+/*Classes used for login component (React transition group)*/
+.loginEnter {
+  position: absolute;
+  transform: translateX(-300px);
+}
+
+.loginEnterActive {
+  transition: transform 0.5s;
+  transform: translateX(0px);
+}
+
+.loginEnterDone {
+  transform: translateX(0px);
+}
+
+.loginExit {
+  transform: translateX(0px);
+}
+
+.loginExitActive {
+  transition: transform 0.5s;
+  transform: translateX(-300px);
+}
+
+.loginExitDone {
+  transform: translateX(-300px);
+}
+
+/*Classes used for signup component (React transition group)*/
+.signupEnter {
+  position: absolute;
+  transform: translateX(300px);
+}
+
+.signupEnterActive {
+  transition: transform 0.5s;
+  transform: translateX(0px);
+}
+
+.signupEnterDone {
+  transform: translateX(0px);
+}
+
+.signupExit {
+  transform: translateX(0px);
+}
+
+.signupExitActive {
+  transition: transform 0.5s;
+  transform: translateX(300px);
+}
+
+.signupExitDone {
+  transform: translateX(300px);
 }
 
 .logoutButton {

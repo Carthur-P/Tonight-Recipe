@@ -18,7 +18,7 @@ export default function SignUp(props){
     }
 
     return(
-        <div className={styles.loginFormContainer}>
+        <div>
             <form onSubmit={(e) => props.handleCreateSubmit(e, info)} className={styles.loginForm}>
                 <input type="text" name="name" placeholder="Name" onChange={handleOnChange} required></input>
                 <input type="email" name="email" placeholder="Email" onChange={handleOnChange} required></input>

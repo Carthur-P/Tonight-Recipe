@@ -18,7 +18,7 @@ export default function Login(props) {
     }
 
     return (
-        <div className={styles.loginFormContainer}>
+        <div>
             <form onSubmit={(e) => props.handleLoginSubmit(e, account)} className={styles.loginForm}>
                 <input type="email" name="email" placeholder="Email" onChange={handleOnChange} required></input>
                 <input type="password" name="password" placeholder="Password" onChange={handleOnChange} required></input>

@@ -12,9 +12,10 @@ export default class Account extends React.Component {
         super(props);
         this.state = {
             user: null,
-            showLogin: false,
+            showForm: false,
+            formType: "login",
             showError: false,
-            showSignUp: false
+            height: null
         }
         this.handleAccountClick = this.handleAccountClick.bind(this);
         this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
@@ -32,43 +33,50 @@ export default class Account extends React.Component {
 
     handleAccountClick() {
         this.setState({
-            showLogin: !this.state.showLogin,
+            showForm: !this.state.showForm,
             showError: false,
-            showSignUp: false
         });
     }
 
-    handleCreateClick(){
+    handleCreateClick() {
         this.setState({
-            showSignUp: true
+            showLogin: false,
+            formType: "signup"
         });
     }
 
-    handleCancelClick(){
+    handleCancelClick() {
         this.setState({
-            showSignUp: false
+            showLogin: true,
+            formType: "login"
         });
     }
 
-    handleLoginSubmit(e, account){
+    handleLoginSubmit(e, account) {
         e.preventDefault();
         auth.signInWithEmailAndPassword(account.email, account.password)
-        .then(() => {
-            this.setState({
-                showError: false
+            .then(() => {
+                this.setState({
+                    showError: false
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+                this.setState({
+                    showError: true
+                });
             });
-        })
-        .catch((err) => {
-            console.log(err);
-            this.setState({
-                showError: true
-            });
-        });
     }
 
-    handleLogoutClick() {
-        auth.signOut().catch((err) => {
-            console.log(err);
+    // handleLogoutClick() {
+    //     auth.signOut().catch((err) => {
+    //         console.log(err);
+    //     });
+    // }
+
+    calculateHeight(element){
+        this.setState({
+            height: element.offse
         });
     }
 
@@ -76,44 +84,60 @@ export default class Account extends React.Component {
         if (this.state.user) {
             return (
                 <div className={styles.accountContainer}>
-                    <img src={heart} className={styles.likeButton}/>
+                    <img src={heart} className={styles.likeButton} />
                     <button onClick={this.handleLogoutClick} className={styles.logoutButton}>Logout</button>
                 </div>
             );
         } else {
             return (
                 <div className={styles.accountContainer}>
-                    <img className={styles.accountButton} src={account} onClick={this.handleAccountClick}/>
+                    <img className={styles.accountButton} src={account} onClick={this.handleAccountClick} />
                     <CSSTransition
-                        in={this.state.showLogin}
-                        timeout={1000}
+                        in={this.state.showForm}
+                        timeout={500}
+                        unmountOnExit
                         classNames={{
-                            enter: styles.loginFormContainerEnter,
-                            enterActive: styles.loginFormContainerEnterActive,
-                            enterDone: styles.loginFormContainerEnterDone,
-                            exit: styles.loginFormContainerExit,
-                            exitActive: styles.loginFormContainerExitActive,
-                            exitDone: styles.loginFormContainerExitDone
+                            enter: styles.formContainerEnter,
+                            enterActive: styles.formContainerEnterActive,
+                            enterDone: styles.formContainerEnterDone,
+                            exit: styles.formContainerExit,
+                            exitActive: styles.formContainerExitActive,
+                            exitDone: styles.formContainerExitDone
                         }}
-                        unmountOnExit
                     >
-                        <Login handleCreateClick={this.handleCreateClick} handleLoginSubmit={this.handleLoginSubmit} showError={this.state.showError}/>
-                    </CSSTransition>
-                    {console.log(this.state.showSignUp)}
-                    <CSSTransition 
-                        in={this.state.showSignUp}
-                        timeout={1000}
-                        unmountOnExit
-                        // classNames={{
-                        //     enter: styles.loginFormContainerEnter,
-                        //     enterActive: styles.loginFormContainerEnterActive,
-                        //     enterDone: styles.loginFormContainerEnterDone,
-                        //     exit: styles.loginFormContainerExit,
-                        //     exitActive: styles.loginFormContainerExitActive,
-                        //     exitDone: styles.loginFormContainerExitDone
-                        // }}
-                    >
-                        <SignUp handleCancelClick={this.handleCancelClick}/>
+                        <div className={styles.formContainer}>
+                            <CSSTransition
+                                in={this.state.formType === "login"}
+                                timeout={500}
+                                unmountOnExit
+                                onEnter={this.calculateHeight}
+                                classNames={{
+                                    enter: styles.loginEnter,
+                                    enterActive: styles.loginEnterActive,
+                                    enterDone: styles.loginEnterDone,
+                                    exit: styles.loginExit,
+                                    exitActive: styles.loginExitActive,
+                                    exitDone: styles.loginExitDone
+                                }}
+                            >
+                                <Login handleCreateClick={this.handleCreateClick} handleLoginSubmit={this.handleLoginSubmit} showError={this.state.showError} />
+                            </CSSTransition>
+                            <CSSTransition
+                                in={this.state.formType === "signup"}
+                                timeout={500}
+                                unmountOnExit
+                                classNames={{
+                                    enter: styles.signupEnter,
+                                    enterActive: styles.signupEnterActive,
+                                    enterDone: styles.signupEnterDone,
+                                    exit: styles.signupExit,
+                                    exitActive: styles.signupExitActive,
+                                    exitDone: styles.signupExitDone
+                                }}
+                            >
+                                <SignUp handleCancelClick={this.handleCancelClick} />
+                            </CSSTransition>
+                        </div>
                     </CSSTransition>
                 </div>
             );

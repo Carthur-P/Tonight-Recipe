@@ -21,6 +21,7 @@ export default class Account extends React.Component {
         this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
         this.handleCreateClick = this.handleCreateClick.bind(this);
         this.handleCancelClick = this.handleCancelClick.bind(this);
+        this.calculateHeight = this.calculateHeight.bind(this);
     }
 
     componentDidMount() {
@@ -75,8 +76,9 @@ export default class Account extends React.Component {
     // }
 
     calculateHeight(element){
+        console.log(element.offsetHeight);
         this.setState({
-            height: element.offse
+            height: element.offsetHeight
         });
     }
 
@@ -105,7 +107,7 @@ export default class Account extends React.Component {
                             exitDone: styles.formContainerExitDone
                         }}
                     >
-                        <div className={styles.formContainer}>
+                        <div className={styles.formContainer} style={{height: this.state.height}}>
                             <CSSTransition
                                 in={this.state.formType === "login"}
                                 timeout={500}
@@ -126,6 +128,7 @@ export default class Account extends React.Component {
                                 in={this.state.formType === "signup"}
                                 timeout={500}
                                 unmountOnExit
+                                onEnter={this.calculateHeight}
                                 classNames={{
                                     enter: styles.signupEnter,
                                     enterActive: styles.signupEnterActive,

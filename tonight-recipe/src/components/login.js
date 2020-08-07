@@ -25,9 +25,6 @@ export default function Login(props) {
                 <button>Login</button>
             </form>
             <button className={styles.createAccountButton} onClick={props.handleCreateClick}>Create</button>
-            {/* {props.showError &&
-                <p className={styles.formError}>{props.errorMessage}</p>
-            } */}
         </div>
     );
 }

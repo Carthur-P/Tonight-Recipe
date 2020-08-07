@@ -23,6 +23,18 @@ body {
   background-color: #5cdb95;
 }
 
+button:hover{
+  filter: brightness(90%);
+}
+
+button:focus{
+  outline: none;
+}
+
+button:active{
+  filter: brightness(100%);
+}
+
 .appContainer {
   min-width: 100%;
   display: flex;
@@ -82,10 +94,6 @@ body {
   font-size: 20px;
   padding: 8px;
   outline: none;
-}
-
-.searchButton:hover {
-  background-color: #379683;
 }
 
 .recipeContainer {
@@ -196,10 +204,6 @@ body {
   border-radius: 50%;
 }
 
-.exitButton:hover {
-  background-color: #379683;
-}
-
 .error {
   margin-top: 20px;
   display: flex;
@@ -232,6 +236,10 @@ body {
   border-radius: 50%;
   background-color: #05386b;
   color: white;
+}
+
+.accountButton:hover {
+  filter: brightness(90%);
 }
 
 .formContainer {
@@ -380,16 +388,16 @@ body {
   margin-left: 15px;
 }
 
-/* .likeButton:hover{
-  opacity: 0.8;
-} */
-
 .formError {
+  position: absolute;
+  width: 250px;
+  right: 40vw;
+  top: 10px;
+  background-color: #edf5e1;
   color: crimson;
-  padding: 0px;
+  padding: 10px;
   margin: 0px;
-  margin-top: 15px;
-  font-size: 1rem;
+  border-radius: 5px;
 }
 
 /*Large Phone (iPhone X/Pixel XL)*/

@@ -27,9 +27,6 @@ export default function SignUp(props){
                 <button>Create</button>
             </form>
             <button className={styles.cancelButton} onClick={() => props.handleCancelClick()}>Cancel</button>
-            {/* {props.showError &&
-                <p className={styles.formError}>props.errorMessage</p>
-            } */}
         </div>
     );
 }

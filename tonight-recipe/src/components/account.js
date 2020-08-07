@@ -80,11 +80,20 @@ export default class Account extends React.Component {
             auth.createUserWithEmailAndPassword(account.email, account.password)
                 .then()
                 .catch((err) => {
-                    this.setState({
-                        showError: true,
-                        errorMessage: "Error"
-                    });
                     console.log(err);
+                    if(err.code === "auth/email-already-in-use"){
+                        this.setState({
+                            showError: true,
+                            errorMessage: "Email already in used"
+                        });
+                    }
+
+                    if(err.code === "auth/weak-password"){
+                        this.setState({
+                            showError: true,
+                            errorMessage: "Password too short"
+                        });
+                    }
                 });
         } else {
             this.setState({
@@ -176,11 +185,11 @@ export default class Account extends React.Component {
                             </CSSTransition>
                         </div>
                     </CSSTransition>
-                    {/* {this.state.showError &&
+                    {this.state.showError &&
                         <div className={styles.formError}>
                             <p>{this.state.errorMessage}</p>
                         </div>
-                    } */}
+                    }
                 </div>
             );
         }

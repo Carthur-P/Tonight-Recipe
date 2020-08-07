@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import styles from '../css/mystyles.module.css';
 
 export default function SignUp(props){
-    const [info, setInfo] = useState({
+    const [account, setAccount] = useState({
         email: "",
         password: ""
     });
 
     function handleOnChange(e) {
         e.persist()
-        setInfo((prevInfo) => {
+        setAccount((prevAccount) => {
             return {
-                ...prevInfo,
+                ...prevAccount,
                 [e.target.name]: e.target.value
             }
         })
@@ -19,7 +19,7 @@ export default function SignUp(props){
 
     return(
         <div>
-            <form onSubmit={(e) => props.handleCreateSubmit(e, info)} className={styles.loginForm}>
+            <form onSubmit={(e) => props.handleSignupSubmit(e, account)} className={styles.loginForm}>
                 <input type="text" name="name" placeholder="Name" onChange={handleOnChange} required></input>
                 <input type="email" name="email" placeholder="Email" onChange={handleOnChange} required></input>
                 <input type="password" name="password" placeholder="Password" onChange={handleOnChange} required></input>
@@ -28,7 +28,7 @@ export default function SignUp(props){
             </form>
             <button className={styles.cancelButton} onClick={() => props.handleCancelClick()}>Cancel</button>
             {/* {props.showError &&
-                <p className={styles.formError}>Wrong username or password</p>
+                <p className={styles.formError}>props.errorMessage</p>
             } */}
         </div>
     );

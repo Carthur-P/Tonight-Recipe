@@ -15,10 +15,12 @@ export default class Account extends React.Component {
             showForm: false,
             formType: "login",
             showError: false,
+            errorMessage: "",
             height: null
         }
         this.handleAccountClick = this.handleAccountClick.bind(this);
         this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+        this.handleSignupSubmit = this.handleSignupSubmit.bind(this);
         this.handleCreateClick = this.handleCreateClick.bind(this);
         this.handleCancelClick = this.handleCancelClick.bind(this);
         this.calculateHeight = this.calculateHeight.bind(this);
@@ -42,14 +44,16 @@ export default class Account extends React.Component {
     handleCreateClick() {
         this.setState({
             showLogin: false,
-            formType: "signup"
+            formType: "signup",
+            showError: false
         });
     }
 
     handleCancelClick() {
         this.setState({
             showLogin: true,
-            formType: "login"
+            formType: "login",
+            showError: false
         });
     }
 
@@ -64,19 +68,39 @@ export default class Account extends React.Component {
             .catch((err) => {
                 console.log(err);
                 this.setState({
-                    showError: true
+                    showError: true,
+                    errorMessage: "Wrong username or password"
                 });
             });
     }
 
-    // handleLogoutClick() {
-    //     auth.signOut().catch((err) => {
-    //         console.log(err);
-    //     });
-    // }
+    handleSignupSubmit(e, account) {
+        e.preventDefault();
+        if (account.password === account.confirmPassword) {
+            auth.createUserWithEmailAndPassword(account.email, account.password)
+                .then()
+                .catch((err) => {
+                    this.setState({
+                        showError: true,
+                        errorMessage: "Error"
+                    });
+                    console.log(err);
+                });
+        } else {
+            this.setState({
+                showError: true,
+                errorMessage: "Passwords must match"
+            })
+        }
+    }
 
-    calculateHeight(element){
-        console.log(element.offsetHeight);
+    handleLogoutClick() {
+        auth.signOut().catch((err) => {
+            console.log(err);
+        });
+    }
+
+    calculateHeight(element) {
         this.setState({
             height: element.offsetHeight
         });
@@ -107,7 +131,7 @@ export default class Account extends React.Component {
                             exitDone: styles.formContainerExitDone
                         }}
                     >
-                        <div className={styles.formContainer} style={{height: this.state.height}}>
+                        <div className={styles.formContainer} style={{ height: this.state.height }}>
                             <CSSTransition
                                 in={this.state.formType === "login"}
                                 timeout={500}
@@ -122,7 +146,12 @@ export default class Account extends React.Component {
                                     exitDone: styles.loginExitDone
                                 }}
                             >
-                                <Login handleCreateClick={this.handleCreateClick} handleLoginSubmit={this.handleLoginSubmit} showError={this.state.showError} />
+                                <Login
+                                    handleCreateClick={this.handleCreateClick}
+                                    handleLoginSubmit={this.handleLoginSubmit}
+                                    showError={this.state.showError}
+                                    errorMessage={this.state.errorMessage}
+                                />
                             </CSSTransition>
                             <CSSTransition
                                 in={this.state.formType === "signup"}
@@ -138,10 +167,20 @@ export default class Account extends React.Component {
                                     exitDone: styles.signupExitDone
                                 }}
                             >
-                                <SignUp handleCancelClick={this.handleCancelClick} />
+                                <SignUp
+                                    handleCancelClick={this.handleCancelClick}
+                                    handleSignupSubmit={this.handleSignupSubmit}
+                                    showError={this.state.showError}
+                                    errorMessage={this.state.errorMessage}
+                                />
                             </CSSTransition>
                         </div>
                     </CSSTransition>
+                    {/* {this.state.showError &&
+                        <div className={styles.formError}>
+                            <p>{this.state.errorMessage}</p>
+                        </div>
+                    } */}
                 </div>
             );
         }

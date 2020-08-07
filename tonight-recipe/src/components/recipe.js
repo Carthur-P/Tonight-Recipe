@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../css/mystyles.module.css';
+import heart from '../image/heart2.png';
 
 export default class Recipe extends React.Component{
     render(){
@@ -15,6 +16,9 @@ export default class Recipe extends React.Component{
                         <p key={label}>{label}</p>
                     ))}
                 </div>
+                {this.props.showFavButton && 
+                    <div className={styles.favButtonContainer}><img src={heart}/></div>
+                }
             </div>
         );
     }

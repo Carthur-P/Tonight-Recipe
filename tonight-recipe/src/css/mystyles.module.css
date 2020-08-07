@@ -23,15 +23,15 @@ body {
   background-color: #5cdb95;
 }
 
-button:hover{
+button:hover {
   filter: brightness(90%);
 }
 
-button:focus{
+button:focus {
   outline: none;
 }
 
-button:active{
+button:active {
   filter: brightness(100%);
 }
 
@@ -127,6 +127,7 @@ button:active{
 
 .info {
   margin-top: 20px;
+  margin-bottom: 5px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -398,6 +399,13 @@ button:active{
   padding: 10px;
   margin: 0px;
   border-radius: 5px;
+}
+
+.favButtonContainer {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 /*Large Phone (iPhone X/Pixel XL)*/

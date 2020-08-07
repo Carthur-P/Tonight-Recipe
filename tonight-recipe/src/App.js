@@ -17,10 +17,15 @@ export default class App extends React.Component {
       haveSearch: false,
       searching: false,
       showPopup: false,
-      recipeData: {}
+      recipeData: {},
+      showFavButton: false
     }
     this.app_id = process.env.REACT_APP_ID;
     this.app_key = process.env.REACT_APP_KEY;
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleRecipeClick = this.handleRecipeClick.bind(this);
+    this.getUser = this.getUser.bind(this);
   }
 
   //fetching data from Edamam API
@@ -68,19 +73,31 @@ export default class App extends React.Component {
     });
   }
 
+  getUser(user){
+    if(user){
+      this.setState({
+        showFavButton: true
+      });
+    } else {
+      this.setState({
+        showFavButton: false
+      });
+    }
+  }
+
   render() {
     //if there is no recipe data and data is not currently being fetch then display homepage
     if (this.state.data.length === 0 && this.state.searching === false) {
       return (
         <div className={styles.appContainer}>
-          <Account/>
+          <Account getUser={this.getUser}/>
           <p className={styles.mainTitle}>Tonight's Recipe</p>
           <p className={styles.subTitle}>Food ideas just a click away</p>
           {/*image design by Amy Cleaver*/}
           <img src={logo} className={styles.logo} alt="Logo" />
           <SeachBar
-            handleSubmit={this.handleSubmit.bind(this)}
-            handleChange={this.handleChange.bind(this)}
+            handleSubmit={this.handleSubmit}
+            handleChange={this.handleChange}
             searchValue={this.state.searchValue}
           />
           {this.state.haveSearch &&
@@ -95,16 +112,16 @@ export default class App extends React.Component {
             < img src={loading} alt="Loading" />
             :
             <div>
-              <Account />
+              <Account getUser={this.getUser}/>
               <SeachBar
-                handleSubmit={this.handleSubmit.bind(this)}
-                handleChange={this.handleChange.bind(this)}
+                handleSubmit={this.handleSubmit}
+                handleChange={this.handleChange}
                 searchValue={this.state.searchValue}
               />
               <div className={styles.recipeContainer}>
                 {this.state.data.map(((recipe) => (
                   <Recipe
-                    handleRecipeClick={this.handleRecipeClick.bind(this)}
+                    handleRecipeClick={this.handleRecipeClick}
                     key={recipe.recipe.label}
                     title={recipe.recipe.label}
                     image={recipe.recipe.image}
@@ -113,12 +130,13 @@ export default class App extends React.Component {
                     ingredients={recipe.recipe.ingredients}
                     dietLabels={recipe.recipe.dietLabels}
                     healthLabels={recipe.recipe.healthLabels}
+                    showFavButton={this.state.showFavButton}
                   />
                 )))}
               </div>
               {this.state.showPopup && //if recipe card has been clicked, display more information in a popup box
                 <RecipePopup
-                  handleRecipeClick={this.handleRecipeClick.bind(this)}
+                  handleRecipeClick={this.handleRecipeClick}
                   recipeData={this.state.recipeData}
                 />
               }

@@ -31,6 +31,7 @@ export default class Account extends React.Component {
             this.setState({
                 user: user
             });
+            this.props.getUser(user);
         });
     }
 

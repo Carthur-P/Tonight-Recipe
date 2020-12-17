@@ -7,6 +7,7 @@ import Account from "./components/account";
 import ErrorMessage from "./components/error";
 import loading from "./image/loading.gif";
 import logo from "./image/logo.png";
+import { db } from "./components/config/firebase";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -19,6 +20,7 @@ export default class App extends React.Component {
       showPopup: false,
       recipeData: {},
       showFavButton: false,
+      user: null,
     };
     this.app_id = process.env.REACT_APP_ID;
     this.app_key = process.env.REACT_APP_KEY;
@@ -79,6 +81,7 @@ export default class App extends React.Component {
     if (user) {
       this.setState({
         showFavButton: true,
+        user: user,
       });
     } else {
       this.setState({
@@ -134,6 +137,7 @@ export default class App extends React.Component {
                     dietLabels={recipe.recipe.dietLabels}
                     healthLabels={recipe.recipe.healthLabels}
                     showFavButton={this.state.showFavButton}
+                    user={this.state.user}
                   />
                 ))}
               </div>

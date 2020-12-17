@@ -10,8 +10,8 @@ export default class Recipe extends React.Component {
   }
 
   onHeartClick() {
-    console.log(this.props);
-    db.collection("hearts")
+    console.log(this.props.user);
+    db.collection(this.props.user.uid)
       .add({
           title: this.props.title,
           image: this.props.image,

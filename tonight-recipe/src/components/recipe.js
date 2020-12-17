@@ -1,11 +1,15 @@
 import React from "react";
 import styles from "../css/mystyles.module.css";
 import heart from "../image/heart2.png";
+import filledHeart from "../image/heart.png";
 import { db } from "./config/firebase";
 
 export default class Recipe extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      heart: false,
+    };
     this.onHeartClick = this.onHeartClick.bind(this);
   }
 
@@ -13,17 +17,30 @@ export default class Recipe extends React.Component {
     console.log(this.props.user);
     db.collection(this.props.user.uid)
       .add({
-          title: this.props.title,
-          image: this.props.image,
-          calories: this.props.calories,
-          servings: this.props.servings,
-          ingredients: this.props.ingredients,
-          dietLabels: this.props.dietLabels,
-          healthLabels: this.props.healthLabels
+        title: this.props.title,
+        image: this.props.image,
+        calories: this.props.calories,
+        servings: this.props.servings,
+        ingredients: this.props.ingredients,
+        dietLabels: this.props.dietLabels,
+        healthLabels: this.props.healthLabels,
       })
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  checkIfInDb() {
+    this.setState({
+      heart: this.props.firestoreRecipeData.some(
+        (recipe) => recipe.title === this.props.title
+      ),
+    });
+  }
+
+  componentDidMount() {
+    this.checkIfInDb();
+    console.log(this.state.heart);
   }
 
   render() {
@@ -48,7 +65,11 @@ export default class Recipe extends React.Component {
         </div>
         {this.props.showFavButton && (
           <div className={styles.favButtonContainer}>
-            <img src={heart} onClick={this.onHeartClick} />
+            {this.state.heart ? (
+              <img src={filledHeart} />
+            ) : (
+              <img src={heart} onClick={this.onHeartClick} />
+            )}
           </div>
         )}
       </div>

@@ -19,6 +19,7 @@ export default class App extends React.Component {
       searching: false,
       showPopup: false,
       recipeData: {},
+      firestoreRecipeData: {},
       showFavButton: false,
       user: null,
     };
@@ -75,10 +76,21 @@ export default class App extends React.Component {
       showPopup: popupState,
       recipeData: recipeData,
     });
+    console.log(this.state.firestoreRecipeData);
   }
 
   getUser(user) {
     if (user) {
+      db.collection(user.uid)
+        .onSnapshot((snapshot) => {
+          let allRecipe = []
+          snapshot.forEach((doc) => {
+            allRecipe.push(doc.data());
+          })
+          this.setState({
+            firestoreRecipeData: allRecipe
+          });
+        });
       this.setState({
         showFavButton: true,
         user: user,
@@ -138,6 +150,7 @@ export default class App extends React.Component {
                     healthLabels={recipe.recipe.healthLabels}
                     showFavButton={this.state.showFavButton}
                     user={this.state.user}
+                    firestoreRecipeData={this.state.firestoreRecipeData}
                   />
                 ))}
               </div>

@@ -1,12 +1,12 @@
-import React from 'react';
-import styles from './css/mystyles.module.css';
-import SeachBar from './components/searchBar';
-import Recipe from './components/recipe';
-import RecipePopup from './components/recipePopup';
-import Account from './components/account';
-import ErrorMessage from './components/error';
-import loading from './image/loading.gif'
-import logo from './image/logo.png'
+import React from "react";
+import styles from "./css/mystyles.module.css";
+import SeachBar from "./components/searchBar";
+import Recipe from "./components/recipe";
+import RecipePopup from "./components/recipePopup";
+import Account from "./components/account";
+import ErrorMessage from "./components/error";
+import loading from "./image/loading.gif";
+import logo from "./image/logo.png";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -18,8 +18,8 @@ export default class App extends React.Component {
       searching: false,
       showPopup: false,
       recipeData: {},
-      showFavButton: false
-    }
+      showFavButton: false,
+    };
     this.app_id = process.env.REACT_APP_ID;
     this.app_key = process.env.REACT_APP_KEY;
     this.handleChange = this.handleChange.bind(this);
@@ -31,14 +31,16 @@ export default class App extends React.Component {
   //fetching data from Edamam API
   fetchData() {
     this.setState({
-      searching: true
+      searching: true,
     });
-    fetch(`https://api.edamam.com/search?q=${this.state.searchValue}&app_id=${this.app_id}&app_key=${this.app_key}`)
+    fetch(
+      `https://api.edamam.com/search?q=${this.state.searchValue}&app_id=${this.app_id}&app_key=${this.app_key}`
+    )
       .then((res) => res.json())
       .then((data) => {
         this.setState({
           data: data.hits,
-          searching: false
+          searching: false,
         });
       })
       .catch((err) => {
@@ -49,7 +51,7 @@ export default class App extends React.Component {
   //handles search field change
   handleChange(e) {
     this.setState({
-      searchValue: e.target.value
+      searchValue: e.target.value,
     });
   }
 
@@ -60,7 +62,7 @@ export default class App extends React.Component {
     this.fetchData();
     this.setState({
       searchValue: "",
-      haveSearch: true
+      haveSearch: true,
     });
   }
 
@@ -69,18 +71,18 @@ export default class App extends React.Component {
     //recipeData - data of the recipe that was clicked
     this.setState({
       showPopup: popupState,
-      recipeData: recipeData
+      recipeData: recipeData,
     });
   }
 
-  getUser(user){
-    if(user){
+  getUser(user) {
+    if (user) {
       this.setState({
-        showFavButton: true
+        showFavButton: true,
       });
     } else {
       this.setState({
-        showFavButton: false
+        showFavButton: false,
       });
     }
   }
@@ -90,7 +92,7 @@ export default class App extends React.Component {
     if (this.state.data.length === 0 && this.state.searching === false) {
       return (
         <div className={styles.appContainer}>
-          <Account getUser={this.getUser}/>
+          <Account getUser={this.getUser} />
           <p className={styles.mainTitle}>Tonight's Recipe</p>
           <p className={styles.subTitle}>Food ideas just a click away</p>
           {/*image design by Amy Cleaver*/}
@@ -100,26 +102,27 @@ export default class App extends React.Component {
             handleChange={this.handleChange}
             searchValue={this.state.searchValue}
           />
-          {this.state.haveSearch &&
+          {this.state.haveSearch && (
             <ErrorMessage message="Sorry we could not find any recipe" />
-          }
+          )}
         </div>
       );
-    } else { //else display all the recipe data that was fetched
+    } else {
+      //else display all the recipe data that was fetched
       return (
         <div className={styles.appContainer}>
-          {this.state.searching ? //if the data is being fetch show the loading screen otherwise show all the recipe cards
-            < img src={loading} alt="Loading" />
-            :
+          {this.state.searching ? ( //if the data is being fetch show the loading screen otherwise show all the recipe cards
+            <img src={loading} alt="Loading" />
+          ) : (
             <div>
-              <Account getUser={this.getUser}/>
+              <Account getUser={this.getUser} />
               <SeachBar
                 handleSubmit={this.handleSubmit}
                 handleChange={this.handleChange}
                 searchValue={this.state.searchValue}
               />
               <div className={styles.recipeContainer}>
-                {this.state.data.map(((recipe) => (
+                {this.state.data.map((recipe) => (
                   <Recipe
                     handleRecipeClick={this.handleRecipeClick}
                     key={recipe.recipe.label}
@@ -132,16 +135,16 @@ export default class App extends React.Component {
                     healthLabels={recipe.recipe.healthLabels}
                     showFavButton={this.state.showFavButton}
                   />
-                )))}
+                ))}
               </div>
-              {this.state.showPopup && //if recipe card has been clicked, display more information in a popup box
+              {this.state.showPopup && ( //if recipe card has been clicked, display more information in a popup box
                 <RecipePopup
                   handleRecipeClick={this.handleRecipeClick}
                   recipeData={this.state.recipeData}
                 />
-              }
+              )}
             </div>
-          }
+          )}
         </div>
       );
     }

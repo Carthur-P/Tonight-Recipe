@@ -3,7 +3,6 @@ import styles from '../css/mystyles.module.css';
 
 export default class RecipePopup extends React.Component {
     render(){
-        console.log(this.props.recipeData);
         return(
             <div className={styles.recipePopupContainer}>
                 <div className={styles.recipePopup}>

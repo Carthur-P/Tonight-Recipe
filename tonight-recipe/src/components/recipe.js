@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../css/mystyles.module.css";
 import heart from "../image/heart2.png";
-import filledHeart from "../image/heart.png";
+import filledHeart from "../image/heart3.png";
 import { db } from "./config/firebase";
 
 export default class Recipe extends React.Component {

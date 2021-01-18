@@ -7,7 +7,7 @@ import Account from "./components/account";
 import ErrorMessage from "./components/error";
 import loading from "./image/loading.gif";
 import logo from "./image/logo.png";
-import { db } from "./components/config/firebase";
+import { db, auth } from "./components/config/firebase";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -19,7 +19,7 @@ export default class App extends React.Component {
       searching: false,
       showPopup: false,
       recipeData: {},
-      firestoreRecipeData: {},
+      firestoreRecipeData: [],
       showFavButton: false,
       user: null,
     };
@@ -28,7 +28,7 @@ export default class App extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleRecipeClick = this.handleRecipeClick.bind(this);
-    this.getUser = this.getUser.bind(this);
+    this.fetchFirebaseData = this.fetchFirebaseData.bind(this);
   }
 
   //fetching data from Edamam API
@@ -76,30 +76,34 @@ export default class App extends React.Component {
       showPopup: popupState,
       recipeData: recipeData,
     });
-    console.log(this.state.firestoreRecipeData);
   }
 
-  getUser(user) {
-    if (user) {
-      db.collection(user.uid)
-        .onSnapshot((snapshot) => {
-          let allRecipe = []
-          snapshot.forEach((doc) => {
-            allRecipe.push(doc.data());
-          })
-          this.setState({
-            firestoreRecipeData: allRecipe
-          });
+  fetchFirebaseData() {
+    if(this.state.user != null){
+      db.collection(this.state.user.uid).onSnapshot((snapshot) => {
+        let allRecipe = [];
+        snapshot.forEach((doc) => {
+          allRecipe.push(doc.data());
         });
-      this.setState({
-        showFavButton: true,
-        user: user,
+        console.log(allRecipe);
+        this.setState({
+          firestoreRecipeData: allRecipe,
+        });
       });
     } else {
       this.setState({
-        showFavButton: false,
+        firestoreRecipeData: []
       });
     }
+  }
+
+  componentDidMount() {
+    auth.onAuthStateChanged((user) => {
+      this.setState({
+        user: user,
+      });
+      this.fetchFirebaseData();
+    });
   }
 
   render() {
@@ -107,7 +111,7 @@ export default class App extends React.Component {
     if (this.state.data.length === 0 && this.state.searching === false) {
       return (
         <div className={styles.appContainer}>
-          <Account getUser={this.getUser} />
+          <Account user={this.state.user} />
           <p className={styles.mainTitle}>Tonight's Recipe</p>
           <p className={styles.subTitle}>Food ideas just a click away</p>
           {/*image design by Amy Cleaver*/}
@@ -130,7 +134,7 @@ export default class App extends React.Component {
             <img src={loading} alt="Loading" />
           ) : (
             <div>
-              <Account getUser={this.getUser} />
+              <Account user={this.state.user} />
               <SeachBar
                 handleSubmit={this.handleSubmit}
                 handleChange={this.handleChange}

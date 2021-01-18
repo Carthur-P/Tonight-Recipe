@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styles from '../css/mystyles.module.css';
 import { CSSTransition } from 'react-transition-group';
-import { auth } from './config/firebase.js';
 import Login from './login';
 import SignUp from './signup';
 import account from '../image/account.png';
 import heart from '../image/heart.png';
+import { auth } from './config/firebase'
 
 export default class Account extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: null,
             showForm: false,
             formType: "login",
             showError: false,
@@ -24,15 +23,6 @@ export default class Account extends React.Component {
         this.handleCreateClick = this.handleCreateClick.bind(this);
         this.handleCancelClick = this.handleCancelClick.bind(this);
         this.calculateHeight = this.calculateHeight.bind(this);
-    }
-
-    componentDidMount() {
-        auth.onAuthStateChanged((user) => {
-            this.setState({
-                user: user
-            });
-            this.props.getUser(user);
-        });
     }
 
     handleAccountClick() {
@@ -117,7 +107,7 @@ export default class Account extends React.Component {
     }
 
     render() {
-        if (this.state.user) {
+        if (this.props.user) {
             return (
                 <div className={styles.accountContainer}>
                     <img src={heart} className={styles.likeButton} />

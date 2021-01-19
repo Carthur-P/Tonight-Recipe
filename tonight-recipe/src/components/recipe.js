@@ -29,15 +29,7 @@ export default class Recipe extends React.Component {
       });
   }
 
-  // checkIfInDb() {
-  //   this.setState({
-  //     heart: this.props.firestoreRecipeData.some((recipe) => 
-  //       recipe.title === this.props.title
-  //     ),
-  //   });
-  // }
-
-  static getDerivedStateFromProps(props, state){
+  static getDerivedStateFromProps(props){
     if(props.firestoreRecipeData.some((recipe) => recipe.title === props.title)){
       return {
         heart: true
@@ -71,9 +63,9 @@ export default class Recipe extends React.Component {
         {this.props.showFavButton && (
           <div className={styles.favButtonContainer}>
             {this.state.heart ? (
-              <img src={filledHeart} />
+              <img src={filledHeart} alt="filledHeart"/>
             ) : (
-              <img src={heart} onClick={this.onHeartClick} />
+              <img src={heart} onClick={this.onHeartClick} alt="heart" />
             )}
           </div>
         )}

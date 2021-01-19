@@ -110,14 +110,14 @@ export default class Account extends React.Component {
         if (this.props.user) {
             return (
                 <div className={styles.accountContainer}>
-                    <img src={heart} className={styles.likeButton} />
+                    <img src={heart} className={styles.likeButton} alt="heart" />
                     <button onClick={this.handleLogoutClick} className={styles.logoutButton}>Logout</button>
                 </div>
             );
         } else {
             return (
                 <div className={styles.accountContainer}>
-                    <img className={styles.accountButton} src={account} onClick={this.handleAccountClick} />
+                    <img className={styles.accountButton} src={account} onClick={this.handleAccountClick} alt="accountButton" />
                     <CSSTransition
                         in={this.state.showForm}
                         timeout={500}

@@ -14,7 +14,6 @@ export default class Recipe extends React.Component {
   }
 
   onHeartClick() {
-    console.log(this.props.user);
     db.collection(this.props.user.uid)
       .add({
         title: this.props.title,
@@ -30,17 +29,23 @@ export default class Recipe extends React.Component {
       });
   }
 
-  checkIfInDb() {
-    this.setState({
-      heart: this.props.firestoreRecipeData.some(
-        (recipe) => recipe.title === this.props.title
-      ),
-    });
-  }
+  // checkIfInDb() {
+  //   this.setState({
+  //     heart: this.props.firestoreRecipeData.some((recipe) => 
+  //       recipe.title === this.props.title
+  //     ),
+  //   });
+  // }
 
-  componentDidMount() {
-    this.checkIfInDb();
-    console.log(this.state.heart);
+  static getDerivedStateFromProps(props, state){
+    if(props.firestoreRecipeData.some((recipe) => recipe.title === props.title)){
+      return {
+        heart: true
+      };
+    }
+    return {
+      heart: false
+    };
   }
 
   render() {

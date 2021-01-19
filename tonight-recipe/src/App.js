@@ -85,14 +85,15 @@ export default class App extends React.Component {
         snapshot.forEach((doc) => {
           allRecipe.push(doc.data());
         });
-        console.log(allRecipe);
         this.setState({
           firestoreRecipeData: allRecipe,
+          showFavButton: true,
         });
       });
     } else {
       this.setState({
-        firestoreRecipeData: []
+        firestoreRecipeData: [],
+        showFavButton: false
       });
     }
   }

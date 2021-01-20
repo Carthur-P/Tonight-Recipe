@@ -3,7 +3,6 @@ import styles from "../css/mystyles.module.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import Login from "./login";
-import Favourite from "./favourite";
 import SignUp from "./signup";
 import account from "../image/account.png";
 import heart from "../image/heart.png";
@@ -14,6 +13,7 @@ export default class Account extends React.Component {
     super(props);
     this.state = {
       showForm: false,
+      showBackButton: false,
       formType: "login",
       showError: false,
       errorMessage: "",
@@ -25,6 +25,7 @@ export default class Account extends React.Component {
     this.handleCreateClick = this.handleCreateClick.bind(this);
     this.handleCancelClick = this.handleCancelClick.bind(this);
     this.calculateHeight = this.calculateHeight.bind(this);
+    this.handleFavouriteClick = this.handleFavouriteClick.bind(this);
   }
 
   handleAccountClick() {
@@ -104,6 +105,12 @@ export default class Account extends React.Component {
     });
   }
 
+  handleFavouriteClick() {
+    this.setState({
+      showBackButton: !this.state.showBackButton,
+    });
+  }
+
   calculateHeight(element) {
     this.setState({
       height: element.offsetHeight,
@@ -114,16 +121,13 @@ export default class Account extends React.Component {
     if (this.props.user) {
       return (
         <div className={styles.accountContainer}>
-          <Router>
-            <Link to='/favourite'>
-              <img src={heart} className={styles.likeButton} alt="heart" />
+          {this.state.showBackButton ? (
+            <Link to="/"><h1 onClick={this.handleFavouriteClick}>Back</h1></Link>
+          ) : (
+            <Link to="/favourite">
+              <img src={heart} className={styles.likeButton} alt="heart" onClick={this.handleFavouriteClick}/>
             </Link>
-            <Switch>
-                <Route path="/favourite">
-                    <Favourite/>
-                </Route>
-            </Switch>
-          </Router>
+          )}
           <button
             onClick={this.handleLogoutClick}
             className={styles.logoutButton}

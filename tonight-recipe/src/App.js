@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./css/mystyles.module.css";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import SeachBar from "./components/searchBar";
+import Favourite from "./components/favourite";
 import Recipe from "./components/recipe";
 import RecipePopup from "./components/recipePopup";
 import Account from "./components/account";
@@ -79,7 +81,7 @@ export default class App extends React.Component {
   }
 
   fetchFirebaseData() {
-    if(this.state.user != null){
+    if (this.state.user != null) {
       db.collection(this.state.user.uid).onSnapshot((snapshot) => {
         let allRecipe = [];
         snapshot.forEach((doc) => {
@@ -93,7 +95,7 @@ export default class App extends React.Component {
     } else {
       this.setState({
         firestoreRecipeData: [],
-        showFavButton: false
+        showFavButton: false,
       });
     }
   }
@@ -111,63 +113,81 @@ export default class App extends React.Component {
     //if there is no recipe data and data is not currently being fetch then display homepage
     if (this.state.data.length === 0 && this.state.searching === false) {
       return (
-        <div className={styles.appContainer}>
+        <Router>
           <Account user={this.state.user} />
-          <p className={styles.mainTitle}>Tonight's Recipe</p>
-          <p className={styles.subTitle}>Food ideas just a click away</p>
-          {/*image design by Amy Cleaver*/}
-          <img src={logo} className={styles.logo} alt="Logo" />
-          <SeachBar
-            handleSubmit={this.handleSubmit}
-            handleChange={this.handleChange}
-            searchValue={this.state.searchValue}
-          />
-          {this.state.haveSearch && (
-            <ErrorMessage message="Sorry we could not find any recipe" />
-          )}
-        </div>
+          <Switch>
+            <Route exact path="/">
+              <div className={styles.appContainer}>
+                <p className={styles.mainTitle}>Tonight's Recipe</p>
+                <p className={styles.subTitle}>Food ideas just a click away</p>
+                {/*image design by Amy Cleaver*/}
+                <img src={logo} className={styles.logo} alt="Logo" />
+                <SeachBar
+                  handleSubmit={this.handleSubmit}
+                  handleChange={this.handleChange}
+                  searchValue={this.state.searchValue}
+                />
+                {this.state.haveSearch && (
+                  <ErrorMessage message="Sorry we could not find any recipe" />
+                )}
+              </div>
+            </Route>
+            <Route exact path="/favourite">
+              <Favourite />
+            </Route>
+          </Switch>
+        </Router>
       );
     } else {
       //else display all the recipe data that was fetched
       return (
-        <div className={styles.appContainer}>
-          {this.state.searching ? ( //if the data is being fetch show the loading screen otherwise show all the recipe cards
-            <img src={loading} alt="Loading" />
-          ) : (
-            <div>
-              <Account user={this.state.user} />
-              <SeachBar
-                handleSubmit={this.handleSubmit}
-                handleChange={this.handleChange}
-                searchValue={this.state.searchValue}
-              />
-              <div className={styles.recipeContainer}>
-                {this.state.data.map((recipe) => (
-                  <Recipe
-                    handleRecipeClick={this.handleRecipeClick}
-                    key={recipe.recipe.label}
-                    title={recipe.recipe.label}
-                    image={recipe.recipe.image}
-                    calories={recipe.recipe.calories}
-                    servings={recipe.recipe.yield}
-                    ingredients={recipe.recipe.ingredients}
-                    dietLabels={recipe.recipe.dietLabels}
-                    healthLabels={recipe.recipe.healthLabels}
-                    showFavButton={this.state.showFavButton}
-                    user={this.state.user}
-                    firestoreRecipeData={this.state.firestoreRecipeData}
-                  />
-                ))}
+        <Router>
+          <div className={styles.appContainer}>
+            {this.state.searching ? ( //if the data is being fetch show the loading screen otherwise show all the recipe cards
+              <img src={loading} alt="Loading" />
+            ) : (
+              <div>
+                <Account user={this.state.user} />
+                <Switch>
+                  <Route exact path="/">
+                    <SeachBar
+                      handleSubmit={this.handleSubmit}
+                      handleChange={this.handleChange}
+                      searchValue={this.state.searchValue}
+                    />
+                    <div className={styles.recipeContainer}>
+                      {this.state.data.map((recipe) => (
+                        <Recipe
+                          handleRecipeClick={this.handleRecipeClick}
+                          key={recipe.recipe.label}
+                          title={recipe.recipe.label}
+                          image={recipe.recipe.image}
+                          calories={recipe.recipe.calories}
+                          servings={recipe.recipe.yield}
+                          ingredients={recipe.recipe.ingredients}
+                          dietLabels={recipe.recipe.dietLabels}
+                          healthLabels={recipe.recipe.healthLabels}
+                          showFavButton={this.state.showFavButton}
+                          user={this.state.user}
+                          firestoreRecipeData={this.state.firestoreRecipeData}
+                        />
+                      ))}
+                    </div>
+                    {this.state.showPopup && ( //if recipe card has been clicked, display more information in a popup box
+                      <RecipePopup
+                        handleRecipeClick={this.handleRecipeClick}
+                        recipeData={this.state.recipeData}
+                      />
+                    )}
+                  </Route>
+                  <Route exact path="/favourite">
+                    <Favourite />
+                  </Route>
+                </Switch>
               </div>
-              {this.state.showPopup && ( //if recipe card has been clicked, display more information in a popup box
-                <RecipePopup
-                  handleRecipeClick={this.handleRecipeClick}
-                  recipeData={this.state.recipeData}
-                />
-              )}
-            </div>
-          )}
-        </div>
+            )}
+          </div>
+        </Router>
       );
     }
   }

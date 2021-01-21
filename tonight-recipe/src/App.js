@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./css/mystyles.module.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SeachBar from "./components/searchBar";
 import Favourite from "./components/favourite";
 import Recipe from "./components/recipe";

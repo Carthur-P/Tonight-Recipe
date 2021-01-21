@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../css/mystyles.module.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import Login from "./login";
 import SignUp from "./signup";

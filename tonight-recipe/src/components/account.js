@@ -105,9 +105,9 @@ export default class Account extends React.Component {
     });
   }
 
-  handleFavouriteClick() {
+  handleFavouriteClick(showBack) {
     this.setState({
-      showBackButton: !this.state.showBackButton,
+      showBackButton: showBack,
     });
   }
 
@@ -122,10 +122,10 @@ export default class Account extends React.Component {
       return (
         <div className={styles.accountContainer}>
           {this.state.showBackButton ? (
-            <Link to="/"><h1 onClick={this.handleFavouriteClick}>Back</h1></Link>
+            <Link to="/"><button className={styles.backButton} onClick={() => this.handleFavouriteClick(false)}>Back</button></Link>
           ) : (
             <Link to="/favourite">
-              <img src={heart} className={styles.likeButton} alt="heart" onClick={this.handleFavouriteClick}/>
+              <img src={heart} className={styles.likeButton} alt="heart" onClick={() => this.handleFavouriteClick(true)}/>
             </Link>
           )}
           <button

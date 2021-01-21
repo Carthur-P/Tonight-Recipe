@@ -389,6 +389,17 @@ button:active {
   margin-left: 15px;
 }
 
+.backButton {
+  padding: 10px;
+  outline: none;
+  background-color: #05386b;
+  color: white;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-left: 15px;
+}
+
 .formError {
   position: absolute;
   width: 250px;

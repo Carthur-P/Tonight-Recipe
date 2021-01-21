@@ -113,11 +113,11 @@ export default class App extends React.Component {
     //if there is no recipe data and data is not currently being fetch then display homepage
     if (this.state.data.length === 0 && this.state.searching === false) {
       return (
-        <Router>
-          <Account user={this.state.user} />
-          <Switch>
-            <Route exact path="/">
-              <div className={styles.appContainer}>
+        <div className={styles.appContainer}>
+          <Router>
+            <Account user={this.state.user} />
+            <Switch>
+              <Route exact path={["/", "/Tonight-Recipe"]}>
                 <p className={styles.mainTitle}>Tonight's Recipe</p>
                 <p className={styles.subTitle}>Food ideas just a click away</p>
                 {/*image design by Amy Cleaver*/}
@@ -130,13 +130,15 @@ export default class App extends React.Component {
                 {this.state.haveSearch && (
                   <ErrorMessage message="Sorry we could not find any recipe" />
                 )}
-              </div>
-            </Route>
-            <Route exact path="/favourite">
-              <Favourite />
-            </Route>
-          </Switch>
-        </Router>
+              </Route>
+              <Route exact path="/favourite">
+                <Favourite
+                  firestoreRecipeData={this.state.firestoreRecipeData}
+                />
+              </Route>
+            </Switch>
+          </Router>
+        </div>
       );
     } else {
       //else display all the recipe data that was fetched
@@ -149,7 +151,7 @@ export default class App extends React.Component {
               <div>
                 <Account user={this.state.user} />
                 <Switch>
-                  <Route exact path="/">
+                  <Route exact path={["/", "/Tonight-Recipe"]}>
                     <SeachBar
                       handleSubmit={this.handleSubmit}
                       handleChange={this.handleChange}
@@ -181,7 +183,7 @@ export default class App extends React.Component {
                     )}
                   </Route>
                   <Route exact path="/favourite">
-                    <Favourite />
+                    <Favourite firestoreRecipeData={this.state.firestoreRecipeData}/>
                   </Route>
                 </Switch>
               </div>
